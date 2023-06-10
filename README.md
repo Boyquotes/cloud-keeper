@@ -25,3 +25,7 @@ Upgrades
 - Faster cloud recharge
 - Faster wind recharge
 - More wind charges
+
+Enemies
+- Small flame minions
+- Large slow fireballs
