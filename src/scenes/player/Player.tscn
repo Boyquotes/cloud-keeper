@@ -108,3 +108,9 @@ anims/move_down = SubResource( 1 )
 anims/move_left = SubResource( 3 )
 anims/move_right = SubResource( 4 )
 anims/move_up = SubResource( 5 )
+
+[node name="Pivot" type="Position2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Pivot"]
+current = true
+smoothing_enabled = true

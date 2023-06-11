@@ -23,7 +23,9 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 0.407843, 0.67451, 0.662745, 1 )
 
-[node name="Cloud" type="Area2D"]
+[node name="Cloud" type="Area2D" groups=["cloud"]]
+collision_layer = 2
+collision_mask = 4
 monitorable = false
 script = ExtResource( 2 )
 
@@ -55,3 +57,5 @@ hframes = 2
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_Cloud_area_entered"]
