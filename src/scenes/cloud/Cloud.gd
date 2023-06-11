@@ -17,4 +17,5 @@ func _on_Cloud_area_entered(area: Area2D) -> void:
 
 func move(player_pos: Vector2, wind_speed: float):
 	var wind_velocity = player_pos.direction_to(global_position) * wind_speed
-	velocity += wind_velocity
+	var new_velocity = velocity + wind_velocity
+	velocity = new_velocity.clamped(wind_speed)
