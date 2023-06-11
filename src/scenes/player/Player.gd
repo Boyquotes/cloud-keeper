@@ -17,6 +17,8 @@ var aim_direction: Vector2
 func _process(delta: float) -> void:
 	move_player(delta)
 	update_aim_direction()
+	if Input.is_action_just_pressed("spawn_cloud"):
+		CloudManager.spawn_cloud(global_position)
 
 func update_aim_direction():
 	aim_direction = global_position.direction_to(get_global_mouse_position())

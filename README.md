@@ -29,3 +29,4 @@ Upgrades
 Enemies
 - Small flame minions
 - Large slow fireballs
+- Medium that split into smaller ones
