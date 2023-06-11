@@ -46,6 +46,18 @@ position = Vector2( 148, 94 )
 [node name="Fire" parent="Ground" instance=ExtResource( 5 )]
 position = Vector2( 177, 100 )
 
+[node name="Fire2" parent="Ground" instance=ExtResource( 5 )]
+position = Vector2( 87, 64 )
+
+[node name="Fire3" parent="Ground" instance=ExtResource( 5 )]
+position = Vector2( 79, 133 )
+
+[node name="Fire4" parent="Ground" instance=ExtResource( 5 )]
+position = Vector2( 229, 145 )
+
+[node name="Fire5" parent="Ground" instance=ExtResource( 5 )]
+position = Vector2( 222, 49 )
+
 [node name="Sky" type="YSort" parent="."]
 script = ExtResource( 3 )
 

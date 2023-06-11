@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player_sprites.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player/WindArea.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 5.0
@@ -109,8 +110,14 @@ anims/move_left = SubResource( 3 )
 anims/move_right = SubResource( 4 )
 anims/move_up = SubResource( 5 )
 
-[node name="Pivot" type="Position2D" parent="."]
+[node name="CameraPivot" type="Position2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Pivot"]
+[node name="Camera2D" type="Camera2D" parent="CameraPivot"]
 current = true
 smoothing_enabled = true
+
+[node name="Pivot" type="Position2D" parent="."]
+unique_name_in_owner = true
+
+[node name="WindArea" parent="Pivot" instance=ExtResource( 3 )]
+unique_name_in_owner = true

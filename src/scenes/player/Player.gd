@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 onready var sprite: Sprite = $Sprite
 onready var animation_player: AnimationPlayer = $AnimationPlayer
+onready var wind_area: Area2D = $"%WindArea"
+onready var pivot: Position2D = $"%Pivot"
 
 export(float) var speed = 60.0
 
@@ -12,16 +14,30 @@ var knockback_strength: float = 20.0
 var knockback_friction: float = 500.0
 var acceleration: float = 4000.0
 var friction: float = 2000.0
-var aim_direction: Vector2
+var aim_direction: Vector2 = Vector2.RIGHT
 
 func _process(delta: float) -> void:
 	move_player(delta)
 	update_aim_direction()
 	if Input.is_action_just_pressed("spawn_cloud"):
 		CloudManager.spawn_cloud(global_position)
+	if Input.is_action_just_pressed("wind"):
+		wind_area.summon_wind(global_position)
 
 func update_aim_direction():
 	aim_direction = global_position.direction_to(get_global_mouse_position())
+	match aim_direction:
+		Vector2.DOWN:
+			animation_player.play("move_down")
+		Vector2.UP:
+			animation_player.play("move_up")
+		Vector2.RIGHT:
+			animation_player.play("move_right")
+		Vector2.LEFT:
+			animation_player.play("move_left")
+	wind_area.rotate(wind_area.get_angle_to(get_global_mouse_position()))
+	var angle = pivot.transform.x.angle_to(aim_direction)
+	pivot.rotate(angle - PI / 2)
 
 func move_player(delta: float):
 	direction = get_input_vector()
