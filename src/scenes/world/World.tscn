@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/cloud/Cloud.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/world/tileset.png" type="Texture" id=4]
 [ext_resource path="res://scenes/enemies/Fire.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/world/Particles.gd" type="Script" id=6]
+[ext_resource path="res://scenes/world/shrine.png" type="Texture" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grass"
@@ -58,6 +59,10 @@ position = Vector2( 229, 145 )
 
 [node name="Fire5" parent="Ground" instance=ExtResource( 5 )]
 position = Vector2( 222, 49 )
+
+[node name="Shrine" type="Sprite" parent="Ground"]
+position = Vector2( 154, 8 )
+texture = ExtResource( 7 )
 
 [node name="Sky" type="YSort" parent="."]
 script = ExtResource( 3 )
