@@ -20,10 +20,12 @@ func _process(delta: float) -> void:
 	move_player(delta)
 	update_aim_direction()
 	if Input.is_action_just_pressed("spawn_cloud"):
-		CloudManager.spawn_cloud(global_position)
+		if StatsManager.consume_cloud_energy():
+			CloudManager.spawn_cloud(global_position)
 	if Input.is_action_just_pressed("wind"):
-		wind_area.summon_wind(global_position)
-		EventBus.emit_signal("wind_summoned", global_position, aim_direction)
+		if StatsManager.consume_wind_energy():
+			wind_area.summon_wind(global_position)
+			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 
 func update_aim_direction():
 	aim_direction = global_position.direction_to(get_global_mouse_position())

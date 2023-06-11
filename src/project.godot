@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://global/Stats.gd"
+} ]
+_global_script_class_icons={
+"Stats": ""
+}
+
 [application]
 
 config/name="GodotWildJam58"
@@ -19,6 +29,7 @@ config/icon="res://icon.png"
 Constants="*res://global/Constants.gd"
 EventBus="*res://global/EventBus.gd"
 CloudManager="*res://global/CloudManager.gd"
+StatsManager="*res://global/StatsManager.tscn"
 
 [display]
 
