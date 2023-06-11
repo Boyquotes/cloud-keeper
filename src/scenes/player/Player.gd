@@ -29,29 +29,21 @@ func _process(delta: float) -> void:
 
 func update_aim_direction():
 	aim_direction = global_position.direction_to(get_global_mouse_position())
-	match aim_direction:
-		Vector2.DOWN:
-			animation_player.play("move_down")
-		Vector2.UP:
-			animation_player.play("move_up")
-		Vector2.RIGHT:
+	if aim_direction.y > 0.5:
+		animation_player.play("move_down")
+	elif aim_direction.y > -0.5:
+		if aim_direction.x > 0:
 			animation_player.play("move_right")
-		Vector2.LEFT:
+		else:
 			animation_player.play("move_left")
+	else:
+		animation_player.play("move_up")
 	wind_area.rotate(wind_area.get_angle_to(get_global_mouse_position()))
 	var angle = pivot.transform.x.angle_to(aim_direction)
 	pivot.rotate(angle - PI / 2)
 
 func move_player(delta: float):
 	direction = get_input_vector()
-	if direction == Vector2.UP:
-		animation_player.play("move_up")
-	elif direction == Vector2.DOWN:
-		animation_player.play("move_down")
-	elif direction == Vector2.LEFT:
-		animation_player.play("move_left")
-	elif direction == Vector2.RIGHT:
-		animation_player.play("move_right")
 	velocity = get_input_velocity(direction, delta)
 	velocity = move_and_slide(velocity)
 
