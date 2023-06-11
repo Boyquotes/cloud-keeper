@@ -7,3 +7,4 @@ signal bgm_muted(muted)
 signal sfx_muted(muted)
 
 signal cloud_spawned(cloud)
+signal wind_summoned(position, direction)

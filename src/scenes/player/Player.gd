@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		CloudManager.spawn_cloud(global_position)
 	if Input.is_action_just_pressed("wind"):
 		wind_area.summon_wind(global_position)
+		EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 
 func update_aim_direction():
 	aim_direction = global_position.direction_to(get_global_mouse_position())

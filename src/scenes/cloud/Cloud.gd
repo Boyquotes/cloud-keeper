@@ -1,7 +1,7 @@
 extends Area2D
 
 var velocity: Vector2
-var friction = 90
+var friction = 70
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
