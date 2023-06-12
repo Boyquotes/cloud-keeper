@@ -4,15 +4,17 @@
 [ext_resource path="res://ui/progress_bar.png" type="Texture" id=2]
 [ext_resource path="res://ui/HUD.gd" type="Script" id=3]
 
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.431373, 0.666667, 0.470588, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.262745, 0.203922, 0.333333, 1 )
+
 [sub_resource type="Theme" id=1]
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 8, 16, 8 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
@@ -21,6 +23,14 @@ region = Rect2( 32, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 8, 0, 8, 8 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
@@ -38,16 +48,6 @@ region = Rect2( 8, 16, 8, 8 )
 atlas = ExtResource( 1 )
 region = Rect2( 8, 24, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 16, 16, 16 )
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.431373, 0.666667, 0.470588, 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.262745, 0.203922, 0.333333, 1 )
-
 [node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -57,79 +57,75 @@ custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
 script = ExtResource( 3 )
 
-[node name="VBoxContainer" type="HBoxContainer" parent="."]
+[node name="Shrine" type="VBoxContainer" parent="."]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 316.0
 margin_bottom = 176.0
 
-[node name="CloudMeter" type="VBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Shrine"]
+margin_right = 312.0
+margin_bottom = 16.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shrine/HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Shrine/HBoxContainer/HBoxContainer"]
+margin_left = 88.0
+margin_right = 104.0
+margin_bottom = 16.0
+texture = SubResource( 14 )
+stretch_mode = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="Shrine/HBoxContainer"]
+margin_left = 108.0
+margin_right = 204.0
+margin_bottom = 16.0
+
+[node name="ShrineHealthBar" type="ProgressBar" parent="Shrine/HBoxContainer/CenterContainer"]
+margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 96, 6 )
+rect_pivot_offset = Vector2( 32, 3 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 2 )
+value = 60.0
+percent_visible = false
+
+[node name="Control" type="Control" parent="Shrine/HBoxContainer"]
+margin_left = 208.0
+margin_right = 312.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="ControlLayout" type="HBoxContainer" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 316.0
+margin_bottom = 176.0
+
+[node name="WindMeter" type="VBoxContainer" parent="ControlLayout"]
 margin_right = 16.0
 margin_bottom = 172.0
 alignment = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/CloudMeter"]
+[node name="Control" type="Control" parent="ControlLayout/WindMeter"]
 margin_top = 84.0
 margin_right = 16.0
 margin_bottom = 84.0
 size_flags_horizontal = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/CloudMeter"]
+[node name="CenterContainer" type="CenterContainer" parent="ControlLayout/WindMeter"]
 margin_top = 88.0
 margin_right = 16.0
 margin_bottom = 152.0
 
-[node name="CloudBar" type="TextureProgress" parent="VBoxContainer/CloudMeter/CenterContainer"]
-unique_name_in_owner = true
-margin_left = 6.0
-margin_right = 10.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 4, 64 )
-theme = SubResource( 1 )
-step = 0.01
-value = 100.0
-texture_progress = ExtResource( 2 )
-fill_mode = 3
-tint_progress = Color( 0.219608, 0.439216, 0.501961, 1 )
-nine_patch_stretch = true
-
-[node name="CloudIcon" type="TextureRect" parent="VBoxContainer/CloudMeter"]
-unique_name_in_owner = true
-margin_top = 156.0
-margin_right = 16.0
-margin_bottom = 172.0
-texture = SubResource( 5 )
-stretch_mode = 4
-
-[node name="ControlHint" type="TextureRect" parent="VBoxContainer/CloudMeter/CloudIcon"]
-margin_left = -5.0
-margin_top = -4.0
-margin_right = 35.0
-margin_bottom = 36.0
-texture = SubResource( 7 )
-stretch_mode = 4
-
-[node name="CloudTween" type="Tween" parent="VBoxContainer/CloudMeter/CloudIcon"]
-unique_name_in_owner = true
-
-[node name="WindMeter" type="VBoxContainer" parent="VBoxContainer"]
-margin_left = 20.0
-margin_right = 36.0
-margin_bottom = 172.0
-alignment = 2
-
-[node name="Control" type="Control" parent="VBoxContainer/WindMeter"]
-margin_top = 84.0
-margin_right = 16.0
-margin_bottom = 84.0
-size_flags_horizontal = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/WindMeter"]
-margin_top = 88.0
-margin_right = 16.0
-margin_bottom = 152.0
-
-[node name="WindBar" type="TextureProgress" parent="VBoxContainer/WindMeter/CenterContainer"]
+[node name="WindBar" type="TextureProgress" parent="ControlLayout/WindMeter/CenterContainer"]
 unique_name_in_owner = true
 margin_left = 6.0
 margin_right = 10.0
@@ -143,7 +139,7 @@ fill_mode = 3
 tint_progress = Color( 0.333333, 0.439216, 0.392157, 1 )
 nine_patch_stretch = true
 
-[node name="WindIcon" type="TextureRect" parent="VBoxContainer/WindMeter"]
+[node name="WindIcon" type="TextureRect" parent="ControlLayout/WindMeter"]
 unique_name_in_owner = true
 margin_top = 156.0
 margin_right = 16.0
@@ -151,7 +147,7 @@ margin_bottom = 172.0
 texture = SubResource( 6 )
 stretch_mode = 4
 
-[node name="ControlHint" type="TextureRect" parent="VBoxContainer/WindMeter/WindIcon"]
+[node name="ControlHint" type="TextureRect" parent="ControlLayout/WindMeter/WindIcon"]
 margin_left = -5.0
 margin_top = -4.0
 margin_right = 35.0
@@ -159,24 +155,74 @@ margin_bottom = 36.0
 texture = SubResource( 8 )
 stretch_mode = 4
 
-[node name="WindTween" type="Tween" parent="VBoxContainer/WindMeter/WindIcon"]
+[node name="WindTween" type="Tween" parent="ControlLayout/WindMeter/WindIcon"]
 unique_name_in_owner = true
 
-[node name="MoveInputs" type="VBoxContainer" parent="VBoxContainer"]
+[node name="CloudMeter" type="VBoxContainer" parent="ControlLayout"]
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 172.0
+alignment = 2
+
+[node name="Control" type="Control" parent="ControlLayout/CloudMeter"]
+margin_top = 84.0
+margin_right = 16.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="ControlLayout/CloudMeter"]
+margin_top = 88.0
+margin_right = 16.0
+margin_bottom = 152.0
+
+[node name="CloudBar" type="TextureProgress" parent="ControlLayout/CloudMeter/CenterContainer"]
+unique_name_in_owner = true
+margin_left = 6.0
+margin_right = 10.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 4, 64 )
+theme = SubResource( 1 )
+step = 0.01
+value = 100.0
+texture_progress = ExtResource( 2 )
+fill_mode = 3
+tint_progress = Color( 0.219608, 0.439216, 0.501961, 1 )
+nine_patch_stretch = true
+
+[node name="CloudIcon" type="TextureRect" parent="ControlLayout/CloudMeter"]
+unique_name_in_owner = true
+margin_top = 156.0
+margin_right = 16.0
+margin_bottom = 172.0
+texture = SubResource( 5 )
+stretch_mode = 4
+
+[node name="ControlHint" type="TextureRect" parent="ControlLayout/CloudMeter/CloudIcon"]
+margin_left = -5.0
+margin_top = -4.0
+margin_right = 35.0
+margin_bottom = 36.0
+texture = SubResource( 7 )
+stretch_mode = 4
+
+[node name="CloudTween" type="Tween" parent="ControlLayout/CloudMeter/CloudIcon"]
+unique_name_in_owner = true
+
+[node name="MoveInputs" type="VBoxContainer" parent="ControlLayout"]
 margin_left = 40.0
 margin_right = 66.0
 margin_bottom = 172.0
 custom_constants/separation = 1
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MoveInputs"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlLayout/MoveInputs"]
 margin_top = 155.0
 margin_right = 26.0
 margin_bottom = 163.0
 custom_constants/separation = 1
 alignment = 1
 
-[node name="UpInput" type="TextureRect" parent="VBoxContainer/MoveInputs/HBoxContainer"]
+[node name="UpInput" type="TextureRect" parent="ControlLayout/MoveInputs/HBoxContainer"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0.5 )
 margin_left = 9.0
@@ -185,14 +231,14 @@ margin_bottom = 8.0
 texture = SubResource( 9 )
 stretch_mode = 4
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MoveInputs"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ControlLayout/MoveInputs"]
 margin_top = 164.0
 margin_right = 26.0
 margin_bottom = 172.0
 custom_constants/separation = 1
 alignment = 1
 
-[node name="LeftInput" type="TextureRect" parent="VBoxContainer/MoveInputs/HBoxContainer2"]
+[node name="LeftInput" type="TextureRect" parent="ControlLayout/MoveInputs/HBoxContainer2"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0.5 )
 margin_right = 8.0
@@ -200,7 +246,7 @@ margin_bottom = 8.0
 texture = SubResource( 10 )
 stretch_mode = 4
 
-[node name="DownInput" type="TextureRect" parent="VBoxContainer/MoveInputs/HBoxContainer2"]
+[node name="DownInput" type="TextureRect" parent="ControlLayout/MoveInputs/HBoxContainer2"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0.5 )
 margin_left = 9.0
@@ -209,7 +255,7 @@ margin_bottom = 8.0
 texture = SubResource( 11 )
 stretch_mode = 4
 
-[node name="RightInput" type="TextureRect" parent="VBoxContainer/MoveInputs/HBoxContainer2"]
+[node name="RightInput" type="TextureRect" parent="ControlLayout/MoveInputs/HBoxContainer2"]
 unique_name_in_owner = true
 self_modulate = Color( 1, 1, 1, 0.5 )
 margin_left = 18.0
@@ -217,49 +263,3 @@ margin_right = 26.0
 margin_bottom = 8.0
 texture = SubResource( 12 )
 stretch_mode = 4
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 316.0
-margin_bottom = 176.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
-margin_right = 312.0
-margin_bottom = 16.0
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/HBoxContainer"]
-margin_right = 104.0
-margin_bottom = 16.0
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer2/HBoxContainer/HBoxContainer"]
-margin_left = 88.0
-margin_right = 104.0
-margin_bottom = 16.0
-texture = SubResource( 14 )
-stretch_mode = 4
-
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer2/HBoxContainer"]
-margin_left = 108.0
-margin_right = 204.0
-margin_bottom = 16.0
-
-[node name="ShrineHealthBar" type="ProgressBar" parent="VBoxContainer2/HBoxContainer/CenterContainer"]
-margin_top = 5.0
-margin_right = 96.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 96, 6 )
-rect_pivot_offset = Vector2( 32, 3 )
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 2 )
-value = 60.0
-percent_visible = false
-
-[node name="Control" type="Control" parent="VBoxContainer2/HBoxContainer"]
-margin_left = 208.0
-margin_right = 312.0
-margin_bottom = 16.0
-size_flags_horizontal = 3
