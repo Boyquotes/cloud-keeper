@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_sprites.png-c284dd386cbe87b3a95072ff18ed6ed7.stex"
+path="res://.import/leaf_particle.png-8face439fb165619089c72ebb9bbdf37.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/player_sprites.png"
-dest_files=[ "res://.import/player_sprites.png-c284dd386cbe87b3a95072ff18ed6ed7.stex" ]
+source_file="res://scenes/vfx/leaf_particle.png"
+dest_files=[ "res://.import/leaf_particle.png-8face439fb165619089c72ebb9bbdf37.stex" ]
 
 [params]
 

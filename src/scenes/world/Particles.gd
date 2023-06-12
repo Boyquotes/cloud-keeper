@@ -1,6 +1,6 @@
 extends YSort
 
-var leaf_particles = preload("res://scenes/world/LeafParticles.tscn")
+var leaf_particles = preload("res://scenes/vfx/LeafParticles.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

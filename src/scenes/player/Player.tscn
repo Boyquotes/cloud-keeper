@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://scenes/player/player_sprites.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player/player_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player/WindArea.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=6]
@@ -22,8 +22,8 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "move_down"
+[sub_resource type="Animation" id=7]
+resource_name = "idle_down"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -36,11 +36,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2, 3 ]
+"values": [ 0, 2 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "move_left"
+[sub_resource type="Animation" id=10]
+resource_name = "idle_left"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -53,11 +53,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 10, 11 ]
+"values": [ 16, 18 ]
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "move_right"
+resource_name = "idle_right"
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -70,12 +70,80 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 14, 15 ]
+"values": [ 24, 26 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle_up"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 10 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "move_down"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35, 36, 37, 38, 39 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "move_left"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50, 51, 52, 53, 54, 55 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "move_right"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58, 59, 60, 61, 62, 63 ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "move_up"
-length = 0.4
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -84,10 +152,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 7 ]
+"values": [ 40, 41, 42, 43, 44, 45, 46, 47 ]
 }
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
@@ -99,15 +167,19 @@ shape = SubResource( 6 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
-hframes = 4
-vframes = 4
+hframes = 8
+vframes = 8
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
+anims/idle_down = SubResource( 7 )
+anims/idle_left = SubResource( 10 )
+anims/idle_right = SubResource( 4 )
+anims/idle_up = SubResource( 8 )
 anims/move_down = SubResource( 1 )
-anims/move_left = SubResource( 3 )
-anims/move_right = SubResource( 4 )
+anims/move_left = SubResource( 9 )
+anims/move_right = SubResource( 11 )
 anims/move_up = SubResource( 5 )
 
 [node name="CameraPivot" type="Position2D" parent="."]
