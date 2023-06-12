@@ -21,9 +21,11 @@ func _process(delta: float) -> void:
 	update_aim_direction()
 	if Input.is_action_just_pressed("spawn_cloud"):
 		if StatsManager.consume_cloud_energy():
+			AudioManager.cloud_sfx.play_sfx()
 			CloudManager.spawn_cloud(global_position)
 	if Input.is_action_just_pressed("wind"):
 		if StatsManager.consume_wind_energy():
+			AudioManager.wind_sfx.play_sfx()
 			wind_area.summon_wind(global_position)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 

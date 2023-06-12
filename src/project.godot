@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 Constants="*res://global/Constants.gd"
 EventBus="*res://global/EventBus.gd"
+AudioManager="*res://global/AudioManager.tscn"
 CloudManager="*res://global/CloudManager.gd"
 StatsManager="*res://global/StatsManager.tscn"
 
