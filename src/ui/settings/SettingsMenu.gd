@@ -5,5 +5,11 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		visible = !visible
-		get_tree().paused = visible
+		toggle_pause()
+
+func _on_CloseButton_pressed() -> void:
+	toggle_pause()
+
+func toggle_pause():
+	visible = !visible
+	get_tree().paused = visible
