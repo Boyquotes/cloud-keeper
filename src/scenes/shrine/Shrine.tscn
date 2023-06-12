@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/shrine/shrine.png" type="Texture" id=1]
+[ext_resource path="res://scenes/shrine/Shrine.gd" type="Script" id=2]
+
+[node name="Shrine" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -8, 0, -40, 0, -40, -48, 40, -48, 40, 0, 16, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -36 )
+texture = ExtResource( 1 )
