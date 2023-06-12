@@ -16,6 +16,10 @@ var acceleration: float = 4000.0
 var friction: float = 2000.0
 var aim_direction: Vector2 = Vector2.RIGHT
 
+var dead_zone = 0.5
+var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_2)
+var yAxisUD = Input.get_joy_axis(0 ,JOY_AXIS_3)
+
 func _process(delta: float) -> void:
 	move_player(delta)
 	update_aim_direction()
@@ -30,7 +34,14 @@ func _process(delta: float) -> void:
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 
 func update_aim_direction():
-	aim_direction = global_position.direction_to(get_global_mouse_position())
+	var aim_input_direction: Vector2 = get_aim_input_vector()
+	if aim_input_direction != Vector2.ZERO:
+		aim_direction = aim_input_direction
+	else:
+		aim_direction = global_position.direction_to(get_global_mouse_position())
+	var angle = pivot.transform.x.angle_to(aim_direction)
+	pivot.rotate(angle)
+	
 	if aim_direction.y > 0.5:
 		animation_player.play("move_down")
 	elif aim_direction.y > -0.5:
@@ -40,9 +51,6 @@ func update_aim_direction():
 			animation_player.play("move_left")
 	else:
 		animation_player.play("move_up")
-	wind_area.rotate(wind_area.get_angle_to(get_global_mouse_position()))
-	var angle = pivot.transform.x.angle_to(aim_direction)
-	pivot.rotate(angle - PI / 2)
 
 func move_player(delta: float):
 	direction = get_input_vector()
@@ -53,7 +61,15 @@ func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	return input_vector.normalized()
+
+func get_aim_input_vector() -> Vector2:
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	input_vector.y = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
 	input_vector = input_vector.normalized()
+	if input_vector.length() < 0.3:
+		return Vector2.ZERO
 	return input_vector
 
 func get_input_velocity(input_vector: Vector2, delta: float) -> Vector2:
