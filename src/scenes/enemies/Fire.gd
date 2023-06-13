@@ -1,20 +1,18 @@
 extends Area2D
 
+export(float) var speed = 20.0
+var velocity: Vector2
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
+func _process(delta: float) -> void:
+	var shrines: Array = get_tree().get_nodes_in_group("shrine")
+	if shrines.size() > 0:
+		var shrine = get_tree().get_nodes_in_group("shrine")[0]
+		velocity = global_position.direction_to(shrine.global_position).normalized() * speed
+		global_position += velocity * delta
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
-
-
-func _on_Fire_area_entered(area: Area2D) -> void:
-	print("fire")
+func _on_Fire_body_entered(body: Node) -> void:
+	if body.is_in_group("shrine"):
+		print("fire found shrine")

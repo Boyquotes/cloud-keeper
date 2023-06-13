@@ -17,8 +17,8 @@ func _on_Cloud_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		area.queue_free()
 
-func move(player_pos: Vector2, wind_speed: float):
-	var wind_velocity = player_pos.direction_to(global_position) * wind_speed
+func move(wind_direction: Vector2, wind_speed: float):
+	var wind_velocity = wind_direction * wind_speed
 	var new_velocity = velocity + wind_velocity
 	velocity = new_velocity.clamped(wind_speed)
 

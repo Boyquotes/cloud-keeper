@@ -23,6 +23,10 @@ func consume_cloud_energy() -> bool:
 	EventBus.emit_signal("cloud_energy_updated", stats.cloud_energy, stats.cloud_energy_max)
 	return true
 
+func take_damage(damage: float = 10.0):
+	stats.shrine_health = clamp(stats.shrine_health - damage, 0, stats.shrine_health_max)
+	EventBus.emit_signal("shrine_health_updated", stats.shrine_health, true)
+
 func _on_WindRechargeTimer_timeout() -> void:
 	if stats.wind_energy < stats.wind_energy_max:
 		stats.wind_energy = clamp(stats.wind_energy + stats.cloud_recharge_rate * wind_recharge_timer.wait_time, 0, stats.wind_energy_max)

@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("wind"):
 		if StatsManager.consume_wind_energy():
 			AudioManager.wind_sfx.play_sfx()
-			wind_area.summon_wind(global_position)
+			wind_area.summon_wind(aim_direction)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 
 func update_aim_direction():

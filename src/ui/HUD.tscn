@@ -87,6 +87,7 @@ margin_right = 204.0
 margin_bottom = 16.0
 
 [node name="ShrineHealthBar" type="ProgressBar" parent="Shrine/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 margin_top = 5.0
 margin_right = 96.0
 margin_bottom = 11.0
