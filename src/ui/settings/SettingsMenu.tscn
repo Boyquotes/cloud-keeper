@@ -63,7 +63,8 @@ size_flags_horizontal = 8
 texture = SubResource( 1 )
 stretch_mode = 4
 
-[node name="HSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="BgmSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 44.0
 margin_right = 116.0
 margin_bottom = 16.0
@@ -83,7 +84,8 @@ size_flags_horizontal = 8
 texture = SubResource( 3 )
 stretch_mode = 4
 
-[node name="HSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="SfxSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 margin_left = 44.0
 margin_right = 116.0
 margin_bottom = 16.0
@@ -98,4 +100,6 @@ margin_bottom = 21.0
 texture_normal = SubResource( 4 )
 stretch_mode = 3
 
+[connection signal="value_changed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BgmSlider" to="." method="_on_BgmSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

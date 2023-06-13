@@ -11,6 +11,6 @@ func _on_sfx_muted(muted: bool):
 	stream_paused = muted
 
 func play_sfx(pitch_variance: float = 0):
-	if !AudioManager.sfx_muted:
+	if !AudioServer.is_bus_mute(2):
 		pitch_scale = rng.randf_range(default_pitch - pitch_variance, default_pitch + pitch_variance)
 		play()
