@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/audio/sfx/hit.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/audio/sfx/extinguish.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/audio/sfx/item.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/audio/bgm/03_LOOP_The_Hunt_Begins_by_Florian_Stracker.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/bgm/03_LOOP_The_Hunt_Begins_by_Florian_Stracker.ogg" type="AudioStream" id=8]
 
 [node name="AudioManager" type="Node"]
 pause_mode = 2
@@ -38,5 +38,6 @@ stream = ExtResource( 7 )
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -0.3
 autoplay = true
 bus = "BGM"

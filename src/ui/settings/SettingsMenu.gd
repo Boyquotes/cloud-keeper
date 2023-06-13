@@ -2,9 +2,9 @@ extends Control
 
 onready var bgm_slider: HSlider = $"%BgmSlider"
 onready var sfx_slider: HSlider = $"%SfxSlider"
+onready var animation_player: AnimationPlayer = $"%AnimationPlayer"
 
 func _ready():
-	hide()
 	refresh()
 
 func _process(delta: float) -> void:
@@ -15,8 +15,12 @@ func _on_CloseButton_pressed() -> void:
 	toggle_pause()
 
 func toggle_pause():
-	visible = !visible
-	get_tree().paused = visible
+	if !animation_player.is_playing():
+		if visible:
+			animation_player.play("hide")
+		else:
+			get_tree().paused = true
+			animation_player.play("show")
 
 func _on_BgmSlider_value_changed(value: float) -> void:
 	AudioManager.set_bgm_volume(value)
@@ -32,3 +36,7 @@ func refresh():
 
 func _on_SfxSlider_drag_ended(value_changed: bool) -> void:
 	AudioManager.item_sfx.play()
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "hide":
+		get_tree().paused = false

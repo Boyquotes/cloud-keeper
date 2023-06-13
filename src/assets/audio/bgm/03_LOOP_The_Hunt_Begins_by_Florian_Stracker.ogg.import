@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/03_LOOP_The_Hunt_Begins_by_Florian_Stracker.ogg-374254d353bf47fc111fd0ff10d51fb5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/bgm/03_LOOP_The_Hunt_Begins_by_Florian_Stracker.ogg"
+dest_files=[ "res://.import/03_LOOP_The_Hunt_Begins_by_Florian_Stracker.ogg-374254d353bf47fc111fd0ff10d51fb5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
