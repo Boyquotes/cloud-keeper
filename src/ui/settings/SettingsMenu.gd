@@ -29,3 +29,6 @@ func refresh():
 	sfx_slider.value = db2linear(AudioServer.get_bus_volume_db(2)) * 100
 	bgm_slider.editable = !AudioServer.is_bus_mute(1)
 	sfx_slider.editable = !AudioServer.is_bus_mute(2)
+
+func _on_SfxSlider_drag_ended(value_changed: bool) -> void:
+	AudioManager.item_sfx.play()

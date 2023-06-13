@@ -21,7 +21,7 @@ func _on_Cloud_area_entered(area: Area2D) -> void:
 func move(wind_direction: Vector2, wind_speed: float):
 	var wind_velocity = wind_direction * wind_speed
 	var new_velocity = velocity + wind_velocity
-	velocity = new_velocity.clamped(wind_speed)
+	velocity = new_velocity.limit_length(wind_speed)
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
