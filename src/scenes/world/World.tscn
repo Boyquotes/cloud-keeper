@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/cloud/Cloud.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/shrine/Shrine.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/world/EnemySpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/world/Enemies.gd" type="Script" id=9]
+[ext_resource path="res://scenes/items/CloudPotion.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/items/WindPotion.tscn" type="PackedScene" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grass"
@@ -67,6 +69,16 @@ position = Vector2( 229, 145 )
 
 [node name="Fire5" parent="Ground/Enemies" instance=ExtResource( 5 )]
 position = Vector2( 222, 49 )
+
+[node name="Items" type="YSort" parent="Ground"]
+
+[node name="WindPotion" parent="Ground/Items" instance=ExtResource( 11 )]
+position = Vector2( 192, 48 )
+collision_mask = 0
+
+[node name="CloudPotion" parent="Ground/Items" instance=ExtResource( 10 )]
+position = Vector2( 128, 48 )
+collision_mask = 0
 
 [node name="Sky" type="YSort" parent="."]
 script = ExtResource( 3 )

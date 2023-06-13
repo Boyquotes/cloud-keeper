@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player_spritesheet.png" type="Texture" id=2]
@@ -159,6 +159,9 @@ tracks/0/keys = {
 "values": [ 40, 41, 42, 43, 44, 45, 46, 47 ]
 }
 
+[sub_resource type="CircleShape2D" id=12]
+radius = 8.0
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
@@ -198,3 +201,12 @@ unique_name_in_owner = true
 
 [node name="WindArea" parent="Pivot" instance=ExtResource( 3 )]
 unique_name_in_owner = true
+
+[node name="ItemDetectionArea" type="Area2D" parent="."]
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetectionArea"]
+shape = SubResource( 12 )
+
+[connection signal="area_entered" from="ItemDetectionArea" to="." method="_on_ItemDetectionArea_area_entered"]

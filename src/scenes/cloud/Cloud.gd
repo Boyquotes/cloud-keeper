@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 
 func _on_Cloud_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
+		AudioManager.extinguish_sfx.play_sfx(0.2)
 		area.queue_free()
 
 func move(wind_direction: Vector2, wind_speed: float):

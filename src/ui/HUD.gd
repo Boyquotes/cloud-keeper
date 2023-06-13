@@ -10,14 +10,10 @@ onready var cloud_icon: TextureRect = $"%CloudIcon"
 onready var wind_icon: TextureRect = $"%WindIcon"
 onready var cloud_tween: Tween = $"%CloudTween"
 onready var wind_tween: Tween = $"%WindTween"
-onready var shrine_health_bar: ProgressBar = $"%ShrineHealthBar"
 
 func _ready() -> void:
 	EventBus.connect("cloud_energy_updated", self, "_on_cloud_energy_updated")
 	EventBus.connect("wind_energy_updated", self, "_on_wind_energy_updated")
-	EventBus.connect("shrine_health_updated", self, "_on_shrine_health_updated")
-	shrine_health_bar.max_value = StatsManager.stats.shrine_health_max
-	shrine_health_bar.value = StatsManager.stats.shrine_health
 
 func _process(delta: float) -> void:
 	set_input_modulate("move_up", up_input)
@@ -46,6 +42,3 @@ func _on_cloud_energy_updated(energy, energy_max):
 func _on_wind_energy_updated(energy, energy_max):
 	wind_bar.max_value = energy_max
 	wind_bar.value = energy
-
-func _on_shrine_health_updated(new_health, damaged):
-	shrine_health_bar.value = new_health

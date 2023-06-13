@@ -12,7 +12,3 @@ func _process(delta: float) -> void:
 		var shrine = get_tree().get_nodes_in_group("shrine")[0]
 		velocity = global_position.direction_to(shrine.global_position).normalized() * speed
 		global_position += velocity * delta
-
-func _on_Fire_body_entered(body: Node) -> void:
-	if body.is_in_group("shrine"):
-		print("fire found shrine")

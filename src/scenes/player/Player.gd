@@ -20,16 +20,20 @@ var dead_zone = 0.5
 var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_2)
 var yAxisUD = Input.get_joy_axis(0 ,JOY_AXIS_3)
 
+func _ready() -> void:
+	randomize()
+
 func _process(delta: float) -> void:
 	move_player(delta)
 	update_aim_direction()
 	if Input.is_action_just_pressed("spawn_cloud"):
 		if StatsManager.consume_cloud_energy():
-			AudioManager.cloud_sfx.play_sfx()
-			CloudManager.spawn_cloud(global_position)
+			AudioManager.cloud_sfx.play_sfx(0.2)
+			var cloud_spawn_offset = Vector2(rand_range(0, 16), rand_range(0, 16))
+			CloudManager.spawn_cloud(global_position + cloud_spawn_offset)
 	if Input.is_action_just_pressed("wind"):
 		if StatsManager.consume_wind_energy():
-			AudioManager.wind_sfx.play_sfx()
+			AudioManager.wind_sfx.play_sfx(0.2)
 			wind_area.summon_wind(aim_direction)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
 
@@ -77,3 +81,8 @@ func get_input_velocity(input_vector: Vector2, delta: float) -> Vector2:
 		return velocity.move_toward(Vector2.ZERO, friction * delta)
 	else:
 		return velocity.move_toward(input_vector * speed, acceleration * delta)
+
+func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
+	if area.is_in_group("item"):
+		AudioManager.item_sfx.play_sfx(0.15)
+		area.pick_up()

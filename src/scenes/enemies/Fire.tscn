@@ -19,6 +19,7 @@ shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 lifetime = 1.5
+local_coords = false
 process_material = ExtResource( 3 )
 texture = ExtResource( 4 )
 

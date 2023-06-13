@@ -23,6 +23,14 @@ func consume_cloud_energy() -> bool:
 	EventBus.emit_signal("cloud_energy_updated", stats.cloud_energy, stats.cloud_energy_max)
 	return true
 
+func refill_wind_energy(amount: float):
+	stats.wind_energy = clamp(stats.wind_energy + amount, 0, stats.wind_energy_max)
+	EventBus.emit_signal("wind_energy_updated", stats.wind_energy, stats.wind_energy_max)
+
+func refill_cloud_energy(amount: float):
+	stats.cloud_energy = clamp(stats.cloud_energy + amount, 0, stats.cloud_energy_max)
+	EventBus.emit_signal("cloud_energy_updated", stats.cloud_energy, stats.cloud_energy_max)
+
 func take_damage(damage: float = 10.0):
 	stats.shrine_health = clamp(stats.shrine_health - damage, 0, stats.shrine_health_max)
 	EventBus.emit_signal("shrine_health_updated", stats.shrine_health, true)

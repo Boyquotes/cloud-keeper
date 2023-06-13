@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/items/Potion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/items/CloudPotion.gd" type="Script" id=2]
+[ext_resource path="res://ui/icons.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 16, 16, 16 )
+
+[node name="CloudPotion" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+energy = 30.0
+
+[node name="Sprite" parent="." index="2"]
+texture = SubResource( 1 )

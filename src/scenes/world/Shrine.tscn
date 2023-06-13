@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/icons.png" type="Texture" id=1]
+[ext_resource path="res://scenes/world/Shrine.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.431373, 0.666667, 0.470588, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.262745, 0.203922, 0.333333, 1 )
+
+[node name="Shrine" type="VBoxContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 316.0
+margin_bottom = 176.0
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 312.0
+margin_bottom = 16.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="ShrineIcon" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 88.0
+margin_right = 104.0
+margin_bottom = 16.0
+texture = SubResource( 14 )
+stretch_mode = 4
+
+[node name="DamageTween" type="Tween" parent="HBoxContainer/HBoxContainer/ShrineIcon"]
+unique_name_in_owner = true
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 108.0
+margin_right = 204.0
+margin_bottom = 16.0
+
+[node name="ShrineHealthBar" type="ProgressBar" parent="HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+margin_top = 5.0
+margin_right = 96.0
+margin_bottom = 11.0
+rect_min_size = Vector2( 96, 6 )
+rect_pivot_offset = Vector2( 32, 3 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 2 )
+value = 60.0
+percent_visible = false
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+margin_left = 208.0
+margin_right = 312.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
