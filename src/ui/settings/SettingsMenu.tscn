@@ -332,7 +332,9 @@ anims/RESET = SubResource( 10 )
 anims/hide = SubResource( 11 )
 anims/show = SubResource( 9 )
 
+[connection signal="toggled" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/BgmButton" to="." method="_on_BgmButton_toggled"]
 [connection signal="value_changed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/BgmSlider" to="." method="_on_BgmSlider_value_changed"]
+[connection signal="toggled" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/Panel/SfxButton" to="." method="_on_SfxButton_toggled"]
 [connection signal="drag_ended" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_SfxSlider_drag_ended"]
 [connection signal="value_changed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

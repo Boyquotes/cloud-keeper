@@ -7,10 +7,10 @@ onready var extinguish_sfx: AudioStreamPlayer = $"%ExtinguishSfx"
 onready var item_sfx: AudioStreamPlayer = $"%ItemSfx"
 
 func mute_bgm(muted = true):
-	EventBus.emit_signal("bgm_muted", muted)
+	AudioServer.set_bus_mute(1, muted)
 
 func mute_sfx(muted = true):
-	EventBus.emit_signal("sfx_muted", muted)
+	AudioServer.set_bus_mute(2, muted)
 
 func set_bgm_volume(volume: float):
 	var volume_db = linear2db(volume * 0.01)
