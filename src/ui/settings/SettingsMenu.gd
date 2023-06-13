@@ -5,6 +5,7 @@ onready var sfx_slider: HSlider = $"%SfxSlider"
 onready var animation_player: AnimationPlayer = $"%AnimationPlayer"
 
 func _ready():
+	hide()
 	refresh()
 
 func _process(delta: float) -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ui/settings/SettingsMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/icons.png" type="Texture" id=2]
 [ext_resource path="res://ui/settings/ButtonStyleBox.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui/theme.tres" type="Theme" id=4]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.772549, 0.8, 0.721569, 1 )
@@ -225,6 +226,7 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 160, 90 )
+theme = ExtResource( 4 )
 color = Color( 0, 0, 0, 0.470588 )
 script = ExtResource( 1 )
 
