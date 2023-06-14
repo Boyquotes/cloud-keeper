@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ui/settings/SettingsMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/icons.png" type="Texture" id=2]
@@ -23,6 +23,14 @@ region = Rect2( 16, 32, 16, 16 )
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 48, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 48, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 2 )
@@ -318,6 +326,34 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 72, 0 )
 size_flags_horizontal = 6
 
+[node name="Control" type="Control" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 124.0
+margin_bottom = 104.0
+size_flags_vertical = 3
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 124.0
+margin_bottom = 124.0
+
+[node name="ExitButton" type="TextureButton" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/Buttons"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 12 )
+
+[node name="Control" type="Control" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/Buttons"]
+margin_left = 20.0
+margin_right = 104.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="CloseButton" type="TextureButton" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/Buttons"]
+margin_left = 108.0
+margin_right = 124.0
+margin_bottom = 16.0
+texture_normal = SubResource( 13 )
+
 [node name="CloseButton" type="TextureButton" parent="."]
 margin_left = 227.0
 margin_top = 20.0
@@ -337,5 +373,7 @@ anims/show = SubResource( 9 )
 [connection signal="toggled" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/Panel/SfxButton" to="." method="_on_SfxButton_toggled"]
 [connection signal="drag_ended" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_SfxSlider_drag_ended"]
 [connection signal="value_changed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer2/SfxSlider" to="." method="_on_SfxSlider_value_changed"]
+[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/Buttons/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

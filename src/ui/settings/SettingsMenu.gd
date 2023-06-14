@@ -46,9 +46,11 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "hide":
 		get_tree().paused = false
 
-
 func _on_BgmButton_toggled(button_pressed: bool) -> void:
 	AudioManager.mute_bgm(button_pressed)
 
 func _on_SfxButton_toggled(button_pressed: bool) -> void:
 	AudioManager.mute_sfx(button_pressed)
+
+func _on_ExitButton_pressed() -> void:
+	get_tree().quit()
