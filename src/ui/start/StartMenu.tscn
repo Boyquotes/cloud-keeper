@@ -2,16 +2,13 @@
 
 [ext_resource path="res://ui/start/main_menu.png" type="Texture" id=1]
 [ext_resource path="res://ui/start/StartMenu.gd" type="Script" id=2]
+[ext_resource path="res://ui/start/StartMenuButton.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 32, 32 )
 
@@ -42,26 +39,17 @@ margin_bottom = 132.0
 custom_constants/separation = 16
 alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="VBoxContainer/Buttons"]
-margin_left = 80.0
-margin_right = 112.0
-margin_bottom = 32.0
-texture_normal = SubResource( 1 )
-stretch_mode = 3
+[node name="PlayButton" parent="VBoxContainer/Buttons" instance=ExtResource( 3 )]
 
-[node name="SettingsButton" type="TextureButton" parent="VBoxContainer/Buttons"]
+[node name="SettingsButton" parent="VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_left = 128.0
 margin_right = 160.0
-margin_bottom = 32.0
-texture_normal = SubResource( 2 )
-stretch_mode = 3
+texture_normal = SubResource( 1 )
 
-[node name="ExitButton" type="TextureButton" parent="VBoxContainer/Buttons"]
+[node name="ExitButton" parent="VBoxContainer/Buttons" instance=ExtResource( 3 )]
 margin_left = 176.0
 margin_right = 208.0
-margin_bottom = 32.0
-texture_normal = SubResource( 3 )
-stretch_mode = 3
+texture_normal = SubResource( 2 )
 
 [connection signal="pressed" from="VBoxContainer/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/SettingsButton" to="." method="_on_SettingsButton_pressed"]

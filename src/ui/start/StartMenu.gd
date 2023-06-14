@@ -2,6 +2,10 @@ extends MarginContainer
 
 signal play_button_pressed
 
+onready var play_button: TextureButton = $"%PlayButton"
+onready var settings_button: TextureButton = $"%SettingsButton"
+onready var exit_button: TextureButton = $"%ExitButton"
+
 func _ready() -> void:
 	pass
 
