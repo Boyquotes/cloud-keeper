@@ -11,6 +11,12 @@ func _ready() -> void:
 	randomize()
 	$Timer.wait_time = spawn_wait_time
 
+func start():
+	$Timer.start()
+
+func stop():
+	$Timer.stop()
+
 func get_random_position() -> Vector2:
 	if polygon.size() < 4:
 		return Vector2.ZERO

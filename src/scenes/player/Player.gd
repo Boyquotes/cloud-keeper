@@ -23,6 +23,7 @@ var yAxisUD = Input.get_joy_axis(0 ,JOY_AXIS_3)
 
 func _ready() -> void:
 	randomize()
+	enable(false)
 
 func _process(delta: float) -> void:
 	move_player(delta)
@@ -37,6 +38,9 @@ func _process(delta: float) -> void:
 			AudioManager.wind_sfx.play_sfx(0.2)
 			wind_area.summon_wind(aim_direction)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
+
+func enable(enabled: bool):
+	set_process(enabled)
 
 func set_camera_current():
 	player_camera.current = true

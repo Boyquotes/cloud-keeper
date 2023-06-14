@@ -12,6 +12,9 @@ onready var cloud_tween: Tween = $"%CloudTween"
 onready var wind_tween: Tween = $"%WindTween"
 
 func _ready() -> void:
+	hide()
+	EventBus.connect("game_start", self, "_on_game_start")
+	EventBus.connect("game_over", self, "_on_game_over")
 	EventBus.connect("cloud_energy_updated", self, "_on_cloud_energy_updated")
 	EventBus.connect("wind_energy_updated", self, "_on_wind_energy_updated")
 
@@ -42,3 +45,9 @@ func _on_cloud_energy_updated(energy, energy_max):
 func _on_wind_energy_updated(energy, energy_max):
 	wind_bar.max_value = energy_max
 	wind_bar.value = energy
+
+func _on_game_start():
+	show()
+
+func _on_game_over():
+	hide()

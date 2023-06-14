@@ -34,6 +34,8 @@ func refill_cloud_energy(amount: float):
 func take_damage(damage: float = 10.0):
 	stats.shrine_health = clamp(stats.shrine_health - damage, 0, stats.shrine_health_max)
 	EventBus.emit_signal("shrine_health_updated", stats.shrine_health, true)
+	if stats.shrine_health == 0:
+		EventBus.emit_signal("game_over")
 
 func _on_WindRechargeTimer_timeout() -> void:
 	if stats.wind_energy < stats.wind_energy_max:
