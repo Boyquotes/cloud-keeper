@@ -7,7 +7,7 @@ onready var settings_button: TextureButton = $"%SettingsButton"
 onready var exit_button: TextureButton = $"%ExitButton"
 
 func _ready() -> void:
-	pass
+	play_button.grab_focus()
 
 func _on_PlayButton_pressed() -> void:
 	play_button.disabled = true
