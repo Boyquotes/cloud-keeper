@@ -1,5 +1,7 @@
 extends TextureProgress
 
+export(float) var wait_time = 60.0
+
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
 	EventBus.connect("game_over", self, "_on_game_over")
@@ -15,7 +17,7 @@ func _on_RainTimer_value_changed(value: float) -> void:
 
 func _on_game_start() -> void:
 	value = 0
-	$Timer.start()
+	$Timer.start(wait_time / max_value)
 
 func _on_game_over() -> void:
 	$Timer.stop()

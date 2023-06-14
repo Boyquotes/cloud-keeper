@@ -248,14 +248,18 @@ spawn_wait_time = 6.0
 max_items_spawned = 6
 
 [node name="RainParticles" type="Particles2D" parent="."]
+unique_name_in_owner = true
 position = Vector2( 56, -128 )
+emitting = false
 amount = 600
 lifetime = 5.0
 visibility_rect = Rect2( -360, -90, 720, 720 )
 process_material = SubResource( 7 )
 
 [node name="SplashParticles" type="Particles2D" parent="."]
+unique_name_in_owner = true
 position = Vector2( 168, 96 )
+emitting = false
 amount = 200
 lifetime = 0.4
 process_material = SubResource( 8 )

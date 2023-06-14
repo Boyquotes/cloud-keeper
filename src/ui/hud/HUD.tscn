@@ -252,5 +252,9 @@ margin_right = 312.0
 margin_bottom = 172.0
 mouse_filter = 2
 
-[node name="RainTimer" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 3 )]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+
+[node name="RainTimer" parent="VBoxContainer/VBoxContainer/CenterContainer" instance=ExtResource( 3 )]
 mouse_filter = 2
