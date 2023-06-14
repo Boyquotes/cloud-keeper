@@ -7,10 +7,14 @@ onready var animation_player: AnimationPlayer = $"%AnimationPlayer"
 func _ready():
 	hide()
 	refresh()
+	EventBus.connect("settings_menu_opened", self, "_on_settings_menu_opened")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()
+
+func _on_settings_menu_opened() -> void:
+	toggle_pause()
 
 func _on_CloseButton_pressed() -> void:
 	toggle_pause()

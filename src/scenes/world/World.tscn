@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 160, -176 ) ]
+"values": [ Vector2( 160, -192 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -67,7 +67,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 160, -176 ), Vector2( 160, 48 ) ]
+"values": [ Vector2( 160, -192 ), Vector2( 160, 48 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("../Ground/Player")
@@ -149,7 +149,7 @@ max_items_spawned = 6
 position = Vector2( 73, 112 )
 
 [node name="CloudBorder" type="YSort" parent="."]
-position = Vector2( -16, -304 )
+position = Vector2( -16, -328 )
 
 [node name="Cloud" type="Sprite" parent="CloudBorder"]
 position = Vector2( 100, 210 )
@@ -210,14 +210,14 @@ texture = ExtResource( 16 )
 [node name="StartMenu" parent="." instance=ExtResource( 15 )]
 pause_mode = 2
 margin_left = 80.0
-margin_top = -152.0
+margin_top = -176.0
 margin_right = 240.0
-margin_bottom = -68.0
+margin_bottom = -92.0
 
 [node name="WorldCamera" type="Camera2D" parent="."]
 pause_mode = 2
 unique_name_in_owner = true
-position = Vector2( 160, -176 )
+position = Vector2( 160, -192 )
 current = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WorldCamera"]

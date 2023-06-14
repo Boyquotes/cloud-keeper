@@ -12,3 +12,5 @@ signal shrine_health_updated(health, damaged)
 signal game_over
 signal game_victory
 signal game_start
+
+signal settings_menu_opened
