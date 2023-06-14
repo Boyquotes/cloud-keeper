@@ -35,9 +35,10 @@ volume_db = 0.2
 [node name="ItemSfx" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
 stream = ExtResource( 7 )
+volume_db = -3.0
 
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -0.3
+volume_db = -5.0
 autoplay = true
 bus = "BGM"

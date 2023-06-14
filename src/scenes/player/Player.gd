@@ -4,6 +4,7 @@ onready var sprite: Sprite = $Sprite
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var wind_area: Area2D = $"%WindArea"
 onready var pivot: Position2D = $"%Pivot"
+onready var player_camera: Camera2D = $"%PlayerCamera"
 
 export(float) var speed = 60.0
 
@@ -36,6 +37,9 @@ func _process(delta: float) -> void:
 			AudioManager.wind_sfx.play_sfx(0.2)
 			wind_area.summon_wind(aim_direction)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
+
+func set_camera_current():
+	player_camera.current = true
 
 func update_aim_direction():
 	var aim_input_direction: Vector2 = get_aim_input_vector()
@@ -86,3 +90,6 @@ func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
 	if area.is_in_group("item"):
 		AudioManager.item_sfx.play_sfx(0.15)
 		area.pick_up()
+
+func _on_StartMenu_play_button_pressed() -> void:
+	pass # Replace with function body.

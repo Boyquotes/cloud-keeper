@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/storm_timer.png-6eff9e562527de01c572df9a36b72436.stex"
+path="res://.import/cloud.png-a19464bb7b2f46e4df12b5016624ea9e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/storm_timer.png"
-dest_files=[ "res://.import/storm_timer.png-6eff9e562527de01c572df9a36b72436.stex" ]
+source_file="res://ui/start/cloud.png"
+dest_files=[ "res://.import/cloud.png-a19464bb7b2f46e4df12b5016624ea9e.stex" ]
 
 [params]
 

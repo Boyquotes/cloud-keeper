@@ -192,7 +192,8 @@ anims/move_up = SubResource( 5 )
 
 [node name="CameraPivot" type="Position2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="CameraPivot"]
+[node name="PlayerCamera" type="Camera2D" parent="CameraPivot" groups=["camera", "player_camera"]]
+unique_name_in_owner = true
 current = true
 smoothing_enabled = true
 
