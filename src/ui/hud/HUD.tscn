@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/hud/progress_bar.png" type="Texture" id=1]
 [ext_resource path="res://scenes/world/Shrine.tscn" type="PackedScene" id=2]
@@ -40,6 +40,10 @@ region = Rect2( 8, 16, 8, 8 )
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 5 )
 region = Rect2( 8, 24, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 48, 48, 16, 16 )
 
 [node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
@@ -246,6 +250,23 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 2
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 16.0
+margin_bottom = 172.0
+mouse_filter = 2
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer/VBoxContainer2"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture_normal = SubResource( 13 )
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_left = 20.0
+margin_right = 276.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_left = 280.0
 margin_right = 312.0
@@ -258,3 +279,5 @@ margin_bottom = 32.0
 
 [node name="RainTimer" parent="VBoxContainer/VBoxContainer/CenterContainer" instance=ExtResource( 3 )]
 mouse_filter = 2
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SettingsButton" to="." method="_on_SettingsButton_pressed"]

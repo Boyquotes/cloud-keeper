@@ -55,3 +55,6 @@ func _on_game_start():
 
 func _on_game_over():
 	hide()
+
+func _on_SettingsButton_pressed() -> void:
+	EventBus.emit_signal("settings_menu_opened")
