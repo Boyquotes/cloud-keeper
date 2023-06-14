@@ -47,6 +47,10 @@ func _on_wind_energy_updated(energy, energy_max):
 	wind_bar.value = energy
 
 func _on_game_start():
+	wind_bar.max_value = StatsManager.stats.wind_energy_max
+	wind_bar.value = wind_bar.max_value
+	cloud_bar.max_value = StatsManager.stats.cloud_energy_max
+	cloud_bar.value = cloud_bar.max_value
 	show()
 
 func _on_game_over():

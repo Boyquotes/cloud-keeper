@@ -5,6 +5,7 @@ onready var shrine_icon: TextureRect = $"%ShrineIcon"
 onready var damage_tween: Tween = $"%DamageTween"
 
 func _ready() -> void:
+	EventBus.connect("game_start", self, "_on_game_start")
 	EventBus.connect("shrine_health_updated", self, "_on_shrine_health_updated")
 	shrine_health_bar.max_value = StatsManager.stats.shrine_health_max
 	shrine_health_bar.value = StatsManager.stats.shrine_health
@@ -17,3 +18,7 @@ func _on_shrine_health_updated(new_health, damaged):
 	damage_tween.interpolate_property(shrine_icon, "self_modulate", Color(1,0,0,1), Color(1,1,1,1), 0.3, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	damage_tween.interpolate_property(shrine_health_bar, "rect_scale", Vector2.ONE * 1.1, Vector2.ONE, 0.3, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	damage_tween.start()
+
+func _on_game_start() -> void:
+	shrine_health_bar.max_value = StatsManager.stats.shrine_health_max
+	shrine_health_bar.value = StatsManager.stats.shrine_health

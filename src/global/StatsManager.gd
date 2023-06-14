@@ -6,8 +6,12 @@ onready var wind_recharge_timer: Timer = $WindRechargeTimer
 onready var cloud_recharge_timer: Timer = $CloudRechargeTimer
 
 func _ready() -> void:
+	EventBus.connect("game_start", self, "_on_game_start")
 	if stats == null:
 		stats = load("res://global/Stats.gd").new()
+
+func _on_game_start() -> void:
+	stats = load("res://global/Stats.gd").new()
 
 func consume_wind_energy() -> bool:
 	if stats.wind_energy < stats.wind_cost:
