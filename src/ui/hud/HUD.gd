@@ -12,7 +12,6 @@ onready var cloud_tween: Tween = $"%CloudTween"
 onready var wind_tween: Tween = $"%WindTween"
 
 func _ready() -> void:
-	hide()
 	EventBus.connect("game_start", self, "_on_game_start")
 	EventBus.connect("game_over", self, "_on_game_over")
 	EventBus.connect("cloud_energy_updated", self, "_on_cloud_energy_updated")

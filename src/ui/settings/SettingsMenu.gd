@@ -5,7 +5,6 @@ onready var sfx_slider: HSlider = $"%SfxSlider"
 onready var animation_player: AnimationPlayer = $"%AnimationPlayer"
 
 func _ready():
-	hide()
 	refresh()
 	EventBus.connect("settings_menu_opened", self, "_on_settings_menu_opened")
 

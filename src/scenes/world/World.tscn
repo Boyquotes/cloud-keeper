@@ -185,20 +185,6 @@ tracks/1/keys = {
 "method": "set_camera_current"
 } ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 1.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "signal_game_start"
-} ]
-}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 17 )
@@ -357,3 +343,4 @@ anims/pan_down = SubResource( 6 )
 [connection signal="spawn_triggered" from="EnemySpawner" to="Ground/Enemies" method="_on_EnemySpawner_spawn_triggered"]
 [connection signal="item_spawn_triggered" from="ItemSpawner" to="Ground/Items" method="_on_ItemSpawner_item_spawn_triggered"]
 [connection signal="play_button_pressed" from="StartMenu" to="." method="_on_StartMenu_play_button_pressed"]
+[connection signal="animation_finished" from="WorldCamera/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

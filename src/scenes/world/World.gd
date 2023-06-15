@@ -7,8 +7,11 @@ onready var player: KinematicBody2D = $"%Player"
 onready var rain_particles: Particles2D = $"%RainParticles"
 onready var splash_particles: Particles2D = $"%SplashParticles"
 
+var tutorial_viewed: bool = false
+
 func _ready() -> void:
 	EventBus.connect("game_victory", self, "_on_game_victory")
+	EventBus.connect("tutorial_closed", self, "_on_tutorial_closed")
 
 func _on_game_victory() -> void:
 	enemy_spawner.stop()
@@ -32,3 +35,13 @@ func extinguish_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies:
 		enemy.extinguish()
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if tutorial_viewed:
+		signal_game_start()
+	else:
+		EventBus.emit_signal("tutorial_triggered")
+
+func _on_tutorial_closed() -> void:
+	tutorial_viewed = true
+	signal_game_start()

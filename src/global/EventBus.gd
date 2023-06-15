@@ -14,3 +14,5 @@ signal game_victory
 signal game_start
 
 signal settings_menu_opened
+signal tutorial_triggered
+signal tutorial_closed
