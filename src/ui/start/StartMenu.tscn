@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://ui/start/main_menu.png" type="Texture" id=1]
+[ext_resource path="res://ui/main_menu.png" type="Texture" id=1]
 [ext_resource path="res://ui/start/StartMenu.gd" type="Script" id=2]
 [ext_resource path="res://ui/start/StartMenuButton.tscn" type="PackedScene" id=3]
 

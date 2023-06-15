@@ -1,6 +1,12 @@
-# Godot Wild Jam 58
+# Cloud Keeper - Godot Wild Jam 58 Submission
 
-A submission for the Godot Wild Jam 58 - Rain or Shine
+A submission for the Godot Wild Jam 58 with the theme "Rain or Shrine".
+
+Wildcards are as follows:
+
+- Textless - Don't use any text anywhere in your game
+- Windy - Wind is a part of gameplay
+- Mythical mashup - Combine different mythologies or folklore
 
 ## Brainstorm
 
