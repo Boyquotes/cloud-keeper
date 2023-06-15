@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ui/tutorial/TutorialMenu.gd" type="Script" id=1]
 [ext_resource path="res://ui/main_menu.png" type="Texture" id=2]
@@ -7,9 +7,119 @@
 atlas = ExtResource( 2 )
 region = Rect2( 0, 32, 16, 16 )
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.2, 1.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ), Vector2( -4, 40 ), Vector2( 1, 40 ), Vector2( 0, 40 ) ]
+}
+
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "hover"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1.2, 1.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ), Vector2( 4, 40 ), Vector2( -1, 40 ), Vector2( 0, 40 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -47,10 +157,16 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 16, 0 )
 
 [node name="LeftButton" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 margin_top = 40.0
 margin_right = 16.0
 margin_bottom = 56.0
 texture_normal = SubResource( 2 )
+
+[node name="LeftButtonAnimationPlayer" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer/LeftButton"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 5 )
+anims/hover = SubResource( 4 )
 
 [node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 20.0
@@ -69,18 +185,35 @@ margin_bottom = 96.0
 rect_min_size = Vector2( 16, 0 )
 
 [node name="RightButton" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2"]
+unique_name_in_owner = true
 margin_top = 40.0
 margin_right = 16.0
 margin_bottom = 56.0
 texture_normal = SubResource( 3 )
+
+[node name="RightButtonAnimationPlayer" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2/RightButton"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 7 )
+anims/hover = SubResource( 6 )
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 136.0
 margin_right = 168.0
 margin_bottom = 152.0
 
-[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer"]
+[node name="CloseButton" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
 margin_left = 76.0
 margin_right = 92.0
 margin_bottom = 16.0
 texture_normal = SubResource( 1 )
+
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer/LeftButton" to="." method="_on_LeftButton_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer/LeftButton" to="." method="_on_LeftButton_mouse_exited"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2/RightButton" to="." method="_on_RightButton_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2/RightButton" to="." method="_on_RightButton_mouse_exited"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/CenterContainer2/RightButton" to="." method="_on_RightButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/CenterContainer/CloseButton" to="." method="_on_CloseButton_mouse_entered"]
+[connection signal="mouse_exited" from="CenterContainer/VBoxContainer/CenterContainer/CloseButton" to="." method="_on_CloseButton_mouse_exited"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
