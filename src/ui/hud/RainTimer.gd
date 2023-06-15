@@ -1,6 +1,6 @@
 extends TextureProgress
 
-export(float) var wait_time = 60.0
+export(float) var wait_time = 20.0
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")

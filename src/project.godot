@@ -32,6 +32,13 @@ AudioManager="*res://global/AudioManager.tscn"
 CloudManager="*res://global/CloudManager.gd"
 StatsManager="*res://global/StatsManager.tscn"
 
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=320

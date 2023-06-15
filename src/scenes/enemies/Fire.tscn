@@ -1,12 +1,60 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/enemies/Fire.gd" type="Script" id=1]
-[ext_resource path="res://scenes/enemies/fire.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/fire_spirit.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/BurnParticles.tres" type="Material" id=3]
 [ext_resource path="res://scenes/enemies/particle_4.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 5.0
+radius = 8.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "move"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "poof"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
 
 [node name="Fire" type="Area2D" groups=["enemy"]]
 collision_layer = 4
@@ -18,15 +66,23 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+visible = false
 lifetime = 1.5
 local_coords = false
 process_material = ExtResource( 3 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -6 )
+position = Vector2( 0, -12 )
 texture = ExtResource( 2 )
-hframes = 4
-vframes = 4
+hframes = 6
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+anims/RESET = SubResource( 3 )
+anims/move = SubResource( 2 )
+anims/poof = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_Fire_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
