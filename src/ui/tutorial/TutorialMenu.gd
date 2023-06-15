@@ -5,12 +5,17 @@ onready var right_button_animation_player: AnimationPlayer = $"%RightButtonAnima
 onready var left_button: TextureButton = $"%LeftButton"
 onready var right_button: TextureButton = $"%RightButton"
 onready var close_button: TextureButton = $"%CloseButton"
+onready var tutorial_image: TextureRect = $"%TutorialImage"
 
 var page = 0
-var pages = [1, 2, 3]
+var pages = [
+	"res://ui/tutorial/tutorial_1.png",
+	"res://ui/tutorial/tutorial_2.png",
+	"res://ui/tutorial/tutorial_3.png"]
 
 func _ready() -> void:
 	EventBus.connect("tutorial_triggered", self, "_on_tutorial_triggered")
+	tutorial_image.texture = load(pages[page])
 	disable_buttons()
 
 func _on_tutorial_triggered() -> void:
@@ -48,11 +53,13 @@ func _on_CloseButton_mouse_exited() -> void:
 func _on_LeftButton_pressed() -> void:
 	if page > 0:
 		page -= 1
+	tutorial_image.texture = load(pages[page])
 	disable_buttons()
 
 func _on_RightButton_pressed() -> void:
 	if page < pages.size() - 1:
 		page += 1
+	tutorial_image.texture = load(pages[page])
 	disable_buttons()
 
 func disable_buttons() -> void:

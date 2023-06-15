@@ -174,7 +174,8 @@ margin_right = 148.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 128, 96 )
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer/Panel"]
+[node name="TutorialImage" type="TextureRect" parent="CenterContainer/VBoxContainer/HBoxContainer/Panel"]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
