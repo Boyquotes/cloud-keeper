@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/cloud/cloud.png" type="Texture" id=1]
 [ext_resource path="res://scenes/cloud/Cloud.gd" type="Script" id=2]
-[ext_resource path="res://scenes/vfx/water_particle.png" type="Texture" id=3]
+[ext_resource path="res://scenes/cloud/cloud_spawn.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
@@ -23,38 +23,6 @@ initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 0.407843, 0.67451, 0.662745, 1 )
-
-[sub_resource type="Animation" id=7]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -92, -60 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "float"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -92, -60 ), Vector2( -92, -62 ), Vector2( -92, -60 ), Vector2( -92, -58 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -82,6 +50,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Position2D/Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -92, -48 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Position2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "exit"
@@ -101,6 +105,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "spawn"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 2
@@ -108,7 +113,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -120,10 +125,78 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Position2D:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -32 ), Vector2( 0, -30 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "float"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, 0 ), Vector2( 0, 2 ) ]
 }
 
 [node name="Cloud" type="Area2D" groups=["cloud"]]
@@ -147,27 +220,11 @@ shape = SubResource( 1 )
 [node name="Rain" type="Particles2D" parent="."]
 position = Vector2( 0, -25 )
 emitting = false
-amount = 20
+amount = 40
 lifetime = 0.6
 visibility_rect = Rect2( -20, -20, 40, 50 )
 local_coords = false
 process_material = SubResource( 2 )
-texture = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -92, -60 )
-texture = ExtResource( 1 )
-offset = Vector2( 92, 34 )
-hframes = 2
-vframes = 4
-
-[node name="Face" type="Sprite" parent="Sprite"]
-position = Vector2( 92, 34 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-autoplay = "float"
-anims/RESET = SubResource( 7 )
-anims/float = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
@@ -177,6 +234,24 @@ anims/spawn = SubResource( 3 )
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, -30 )
+
+[node name="Sprite" type="Sprite" parent="Position2D"]
+position = Vector2( 0, -2 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -2 )
+hframes = 4
+frame = 1
+
+[node name="Face" type="Sprite" parent="Position2D/Sprite"]
+position = Vector2( 0, -1 )
+
+[node name="HoverAnimPlayer" type="AnimationPlayer" parent="Position2D/Sprite"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 10 )
+anims/float = SubResource( 9 )
 
 [connection signal="area_entered" from="." to="." method="_on_Cloud_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

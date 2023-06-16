@@ -1,7 +1,8 @@
 extends Area2D
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
-onready var face: Sprite = $Sprite/Face
+onready var face: Sprite = $Position2D/Sprite/Face
+onready var hover_anim_player: AnimationPlayer = $"%HoverAnimPlayer"
 
 export(float) var life_time = 5.0
 var velocity: Vector2
@@ -34,6 +35,7 @@ func move(wind_direction: Vector2, wind_speed: float):
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		$LifeTimer.start(life_time)
+		hover_anim_player.play("float")
 	elif anim_name == "exit":
 		queue_free()
 
