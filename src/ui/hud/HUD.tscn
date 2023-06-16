@@ -278,6 +278,8 @@ margin_right = 32.0
 margin_bottom = 32.0
 
 [node name="RainTimer" parent="VBoxContainer/VBoxContainer/CenterContainer" instance=ExtResource( 3 )]
+margin_right = 32.0
+margin_bottom = 32.0
 mouse_filter = 2
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SettingsButton" to="." method="_on_SettingsButton_pressed"]

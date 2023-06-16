@@ -62,30 +62,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 1 ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Position2D/Sprite:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -92, -48 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Position2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -30 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "exit"
@@ -236,7 +212,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 0, -30 )
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
 position = Vector2( 0, -2 )
