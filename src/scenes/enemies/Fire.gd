@@ -1,6 +1,6 @@
 extends Area2D
 
-export(float) var speed = 20.0
+export(float) var speed = 12.0
 var velocity: Vector2
 var spawned: bool = false
 
