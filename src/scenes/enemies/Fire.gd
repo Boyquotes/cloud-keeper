@@ -2,11 +2,14 @@ extends Area2D
 
 export(float) var speed = 20.0
 var velocity: Vector2
+var spawned: bool = false
 
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	if !spawned:
+		return
 	var shrines: Array = get_tree().get_nodes_in_group("shrine")
 	if shrines.size() > 0:
 		var shrine = get_tree().get_nodes_in_group("shrine")[0]
@@ -22,3 +25,6 @@ func extinguish() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "poof":
 		queue_free()
+	elif anim_name == "spawn":
+		spawned = true
+		$AnimationPlayer.play("move")

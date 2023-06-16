@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/enemies/Fire.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enemies/fire_spirit.png" type="Texture" id=2]
@@ -56,6 +56,22 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9, 10, 11 ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "spawn"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+
 [node name="Fire" type="Area2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
@@ -76,13 +92,14 @@ texture = ExtResource( 4 )
 position = Vector2( 0, -12 )
 texture = ExtResource( 2 )
 hframes = 6
-vframes = 2
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "move"
+autoplay = "spawn"
 anims/RESET = SubResource( 3 )
 anims/move = SubResource( 2 )
 anims/poof = SubResource( 4 )
+anims/spawn = SubResource( 5 )
 
 [connection signal="body_entered" from="." to="." method="_on_Fire_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
