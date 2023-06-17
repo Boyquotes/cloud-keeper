@@ -8,6 +8,9 @@ export(float) var wait_time = 60.0
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
 	EventBus.connect("game_over", self, "_on_game_over")
+	reset()
+
+func reset() -> void:
 	texture_progress.value = 0
 
 func _on_Timer_timeout() -> void:

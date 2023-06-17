@@ -7,7 +7,7 @@ onready var player: KinematicBody2D = $"%Player"
 onready var rain_particles: Particles2D = $"%RainParticles"
 onready var splash_particles: Particles2D = $"%SplashParticles"
 
-var tutorial_viewed: bool = false
+export(bool) var tutorial_viewed = false
 
 func _ready() -> void:
 	EventBus.connect("game_victory", self, "_on_game_victory")

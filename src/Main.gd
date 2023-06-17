@@ -1,16 +1,22 @@
 extends Node
 
+onready var fade_screen: ColorRect = $"%FadeScreen"
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+var world
+var world_scene = preload("res://scenes/world/World.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	EventBus.connect("game_over", self, "_on_game_over")
+	world = $World
 
+func _on_game_over() -> void:
+	fade_screen.whiteout(false)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func _on_FadeScreen_whiteout_completed() -> void:
+	world.queue_free()
+	world = world_scene.instance()
+	world.tutorial_viewed = true
+	StatsManager.reset()
+	$UI/HUD.reset()
+	add_child(world)
+	fade_screen.whiteout(true)

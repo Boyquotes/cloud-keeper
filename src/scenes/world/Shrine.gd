@@ -29,3 +29,7 @@ func _on_game_start() -> void:
 
 func _on_DamageTween_tween_completed(object: Object, key: NodePath) -> void:
 	shrine_health_bar.set("custom_styles/fg", fg_style_box)
+
+func reset():
+	shrine_health_bar.max_value = StatsManager.stats.shrine_health_max
+	shrine_health_bar.value = StatsManager.stats.shrine_health

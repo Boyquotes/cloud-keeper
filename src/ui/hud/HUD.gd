@@ -10,6 +10,8 @@ onready var cloud_icon: TextureRect = $"%CloudIcon"
 onready var wind_icon: TextureRect = $"%WindIcon"
 onready var cloud_tween: Tween = $"%CloudTween"
 onready var wind_tween: Tween = $"%WindTween"
+onready var shrine: VBoxContainer = $Shrine
+onready var rain_timer: CenterContainer = $"%RainTimer"
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
@@ -46,14 +48,19 @@ func _on_wind_energy_updated(energy, energy_max):
 	wind_bar.value = energy
 
 func _on_game_start():
-	wind_bar.max_value = StatsManager.stats.wind_energy_max
-	wind_bar.value = wind_bar.max_value
-	cloud_bar.max_value = StatsManager.stats.cloud_energy_max
-	cloud_bar.value = cloud_bar.max_value
+	reset()
 	show()
 
 func _on_game_over():
 	hide()
+
+func reset() -> void:
+	wind_bar.max_value = StatsManager.stats.wind_energy_max
+	wind_bar.value = wind_bar.max_value
+	cloud_bar.max_value = StatsManager.stats.cloud_energy_max
+	cloud_bar.value = cloud_bar.max_value
+	shrine.reset()
+	rain_timer.reset()
 
 func _on_SettingsButton_pressed() -> void:
 	EventBus.emit_signal("settings_menu_opened")
