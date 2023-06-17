@@ -18,10 +18,12 @@ func _process(delta: float) -> void:
 		toggle_pause()
 
 func _on_settings_menu_opened() -> void:
+	AudioManager.button_select.play()
 	toggle_pause()
 
 func _on_CloseButton_pressed() -> void:
 	toggle_pause()
+	AudioManager.water_sfx.play()
 
 func toggle_pause():
 	if !animation_player.is_playing():
@@ -36,6 +38,7 @@ func _on_BgmSlider_value_changed(value: float) -> void:
 
 func _on_SfxSlider_value_changed(value: float) -> void:
 	AudioManager.set_sfx_volume(value)
+	AudioManager.button_hover_sfx.play()
 
 func refresh():
 	bgm_slider.value = db2linear(AudioServer.get_bus_volume_db(1)) * 100
@@ -48,9 +51,6 @@ func set_fullscreen_mode(is_fullscreen: bool):
 	OS.window_fullscreen = is_fullscreen
 	fullscreen_button.pressed = is_fullscreen
 	windowed_button.pressed = !is_fullscreen
-
-func _on_SfxSlider_drag_ended(value_changed: bool) -> void:
-	AudioManager.item_sfx.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "hide":
@@ -75,3 +75,22 @@ func _on_FullscreenButton_toggled(button_pressed: bool) -> void:
 func _on_WindowedButton_toggled(button_pressed: bool) -> void:
 	if button_pressed:
 		set_fullscreen_mode(false)
+
+func _on_BgmButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+
+func _on_SfxButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+
+func _on_FullscreenButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+
+func _on_WindowedButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+
+func _on_ExitButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+
+func _on_CloseButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
+

@@ -24,6 +24,7 @@ func _on_tutorial_triggered() -> void:
 func _on_LeftButton_mouse_entered() -> void:
 	if left_button.disabled:
 		return
+	AudioManager.button_hover_sfx.play()
 	left_button.rect_pivot_offset = left_button.rect_size / 2
 	left_button_animation_player.play("hover")
 
@@ -33,6 +34,7 @@ func _on_LeftButton_mouse_exited() -> void:
 func _on_RightButton_mouse_entered() -> void:
 	if right_button.disabled:
 		return
+	AudioManager.button_hover_sfx.play()
 	right_button.rect_pivot_offset = right_button.rect_size / 2
 	right_button_animation_player.play("hover")
 
@@ -40,10 +42,12 @@ func _on_RightButton_mouse_exited() -> void:
 	right_button_animation_player.play("RESET")
 
 func _on_CloseButton_pressed() -> void:
+	AudioManager.water_sfx.play()
 	hide()
 	EventBus.emit_signal("tutorial_closed")
 
 func _on_CloseButton_mouse_entered() -> void:
+	AudioManager.button_hover_sfx.play()
 	close_button.rect_pivot_offset = close_button.rect_size / 2
 	close_button.rect_scale = Vector2.ONE * 1.2
 
@@ -51,12 +55,14 @@ func _on_CloseButton_mouse_exited() -> void:
 	close_button.rect_scale = Vector2.ONE
 
 func _on_LeftButton_pressed() -> void:
+	AudioManager.button_select.play()
 	if page > 0:
 		page -= 1
 	tutorial_image.texture = load(pages[page])
 	disable_buttons()
 
 func _on_RightButton_pressed() -> void:
+	AudioManager.button_select.play()
 	if page < pages.size() - 1:
 		page += 1
 	tutorial_image.texture = load(pages[page])
