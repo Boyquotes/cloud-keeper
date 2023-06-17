@@ -1,7 +1,11 @@
 extends Area2D
 
-export(float) var speed = 12.0
+export(float) var speed = 20.0
+export(float) var acceleration = 200.0
+export(float) var friction = 400.0
 var velocity: Vector2
+var knockback: Vector2
+var max_knockback_strength: float = 40.0
 var spawned: bool = false
 
 func _ready() -> void:
@@ -13,8 +17,14 @@ func _process(delta: float) -> void:
 	var shrines: Array = get_tree().get_nodes_in_group("shrine")
 	if shrines.size() > 0:
 		var shrine = get_tree().get_nodes_in_group("shrine")[0]
-		velocity = global_position.direction_to(shrine.global_position).normalized() * speed
+		var target_velocity = global_position.direction_to(shrine.global_position).normalized() * speed
+		knockback = knockback.move_toward(Vector2.ZERO, friction * delta)
+		target_velocity += knockback.limit_length(target_velocity.length() + max_knockback_strength)
+		velocity = velocity.move_toward(target_velocity.limit_length(speed), acceleration * delta)
 		global_position += velocity * delta
+
+func set_knockback(new_knockback: Vector2):
+	knockback = new_knockback
 
 func extinguish() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
