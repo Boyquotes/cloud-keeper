@@ -7,21 +7,6 @@
 radius = 8.0
 height = 12.0
 
-[sub_resource type="ParticlesMaterial" id=2]
-lifetime_randomness = 0.4
-emission_shape = 5
-emission_ring_radius = 12.0
-emission_ring_inner_radius = 0.0
-emission_ring_height = 6.0
-emission_ring_axis = Vector3( 0, 12, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 20.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
@@ -37,7 +22,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Rain:emitting")
+tracks/1/path = NodePath("Position2D/Rain:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -49,7 +34,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:frame")
+tracks/2/path = NodePath("Position2D/Position2D/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -61,7 +46,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Position2D/Sprite/Face:visible")
+tracks/3/path = NodePath("Position2D/Position2D/Sprite/Face:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -73,7 +58,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Shadow:frame")
+tracks/4/path = NodePath("Position2D/Shadow:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -85,7 +70,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Shadow:scale")
+tracks/5/path = NodePath("Position2D/Shadow:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -95,6 +80,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Position2D/Position2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -2 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -128,7 +125,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Rain:emitting")
+tracks/1/path = NodePath("Position2D/Rain:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -140,7 +137,7 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:frame")
+tracks/2/path = NodePath("Position2D/Position2D/Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -152,53 +149,68 @@ tracks/2/keys = {
 "values": [ 0, 0, 1, 2, 3 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Position2D:position")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Position2D/Position2D/Sprite/Face:visible")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -8 ), Vector2( 0, -32 ), Vector2( 0, -28 ), Vector2( 0, -30 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Position2D/Sprite/Face:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("Shadow:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("Position2D/Shadow:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 0.6, 0.7, 0.8, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 0, 1, 2, 3 ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Shadow:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("Position2D/Shadow:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Position2D/Position2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 22 ), Vector2( 0, -2 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="ParticlesMaterial" id=2]
+lifetime_randomness = 0.4
+emission_shape = 5
+emission_ring_radius = 12.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 6.0
+emission_ring_axis = Vector3( 0, 12, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -250,23 +262,9 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource( 2 )
 
-[node name="Shadow" type="Sprite" parent="."]
-self_modulate = Color( 0, 0, 0, 0.392157 )
-texture = ExtResource( 4 )
-hframes = 4
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource( 1 )
-
-[node name="Rain" type="Particles2D" parent="."]
-position = Vector2( 0, -25 )
-emitting = false
-amount = 40
-lifetime = 0.6
-visibility_rect = Rect2( -20, -20, 40, 50 )
-local_coords = false
-process_material = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
@@ -280,18 +278,37 @@ one_shot = true
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 0, -30 )
 
-[node name="Sprite" type="Sprite" parent="Position2D"]
+[node name="Shadow" type="Sprite" parent="Position2D"]
+self_modulate = Color( 0, 0, 0, 0.392157 )
+position = Vector2( 0, 30 )
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="Rain" type="Particles2D" parent="Position2D"]
+position = Vector2( 0, 5 )
+emitting = false
+amount = 40
+lifetime = 0.6
+visibility_rect = Rect2( -20, -20, 40, 50 )
+local_coords = false
+process_material = SubResource( 2 )
+
+[node name="Position2D" type="Position2D" parent="Position2D"]
+position = Vector2( 0, -2 )
+
+[node name="Sprite" type="Sprite" parent="Position2D/Position2D"]
 position = Vector2( 0, -2 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -2 )
 hframes = 4
 frame = 1
 
-[node name="Face" type="Sprite" parent="Position2D/Sprite"]
+[node name="Face" type="Sprite" parent="Position2D/Position2D/Sprite"]
+unique_name_in_owner = true
 visible = false
 position = Vector2( 0, -1 )
 
-[node name="HoverAnimPlayer" type="AnimationPlayer" parent="Position2D/Sprite"]
+[node name="HoverAnimPlayer" type="AnimationPlayer" parent="Position2D/Position2D/Sprite"]
 unique_name_in_owner = true
 anims/RESET = SubResource( 10 )
 anims/float = SubResource( 9 )
