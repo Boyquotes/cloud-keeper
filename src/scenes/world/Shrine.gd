@@ -5,7 +5,7 @@ onready var shrine_icon: TextureRect = $"%ShrineIcon"
 onready var damage_tween: Tween = $"%DamageTween"
 
 var fg_style_box = preload("res://ui/hud/ShrineHealthFgStyleBox.tres")
-var fg_style_box_white = preload("res://ui/hud/ShrineHealthFgStyleBoxWhite.tres")
+var fg_style_box_white = preload("res://ui/hud/FgStyleBoxWhite.tres")
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")

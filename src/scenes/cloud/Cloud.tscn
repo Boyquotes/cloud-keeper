@@ -22,7 +22,6 @@ gravity = Vector3( 0, 98, 0 )
 initial_velocity = 20.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color = Color( 0.407843, 0.67451, 0.662745, 1 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001

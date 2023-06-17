@@ -1,8 +1,13 @@
 extends Control
 
+onready var bgm_button: TextureButton = $"%BgmButton"
+onready var sfx_button: TextureButton = $"%SfxButton"
 onready var bgm_slider: HSlider = $"%BgmSlider"
 onready var sfx_slider: HSlider = $"%SfxSlider"
 onready var animation_player: AnimationPlayer = $"%AnimationPlayer"
+onready var close_button: TextureButton = $"%CloseButton"
+onready var fullscreen_button: TextureButton = $"%FullscreenButton"
+onready var windowed_button: TextureButton = $"%WindowedButton"
 
 func _ready():
 	refresh()
@@ -37,6 +42,12 @@ func refresh():
 	sfx_slider.value = db2linear(AudioServer.get_bus_volume_db(2)) * 100
 	bgm_slider.editable = !AudioServer.is_bus_mute(1)
 	sfx_slider.editable = !AudioServer.is_bus_mute(2)
+	set_fullscreen_mode(OS.window_fullscreen)
+
+func set_fullscreen_mode(is_fullscreen: bool):
+	OS.window_fullscreen = is_fullscreen
+	fullscreen_button.pressed = is_fullscreen
+	windowed_button.pressed = !is_fullscreen
 
 func _on_SfxSlider_drag_ended(value_changed: bool) -> void:
 	AudioManager.item_sfx.play()
@@ -47,9 +58,20 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 
 func _on_BgmButton_toggled(button_pressed: bool) -> void:
 	AudioManager.mute_bgm(button_pressed)
+	bgm_slider.editable = !button_pressed
 
 func _on_SfxButton_toggled(button_pressed: bool) -> void:
 	AudioManager.mute_sfx(button_pressed)
+	sfx_slider.editable = !button_pressed
 
 func _on_ExitButton_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_FullscreenButton_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		set_fullscreen_mode(true)
+
+func _on_WindowedButton_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		set_fullscreen_mode(false)

@@ -1,3 +1,35 @@
-[gd_resource type="Theme" format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
+
+[ext_resource path="res://ui/main_menu.png" type="Texture" id=1]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 104, 0, 8, 12 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 120, 0, 8, 12 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 112, 0, 8, 12 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 96, 8, 8, 8 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 6.0
 
 [resource]
+HSlider/icons/grabber = SubResource( 3 )
+HSlider/icons/grabber_disabled = SubResource( 6 )
+HSlider/icons/grabber_highlight = SubResource( 7 )
+HSlider/styles/grabber_area = SubResource( 2 )
+HSlider/styles/grabber_area_highlight = SubResource( 4 )
+HSlider/styles/slider = SubResource( 1 )
