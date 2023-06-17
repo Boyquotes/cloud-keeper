@@ -8,6 +8,7 @@ export(float) var life_time = 5.0
 var velocity: Vector2
 var friction = 70
 var face_original_pos: Vector2
+var spawned := false
 
 func _ready() -> void:
 	animation_player.play("spawn")
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 		face.position = face_original_pos + velocity.normalized() * 2
 
 func _on_Cloud_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
+	if area.is_in_group("enemy") && !$LifeTimer.is_stopped():
 		area.extinguish()
 
 func move(wind_direction: Vector2, wind_speed: float):
@@ -36,6 +37,10 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "spawn":
 		$LifeTimer.start(life_time)
 		hover_anim_player.play("float")
+		var areas = get_overlapping_areas()
+		for area in areas:
+			if area.is_in_group("enemy"):
+				area.extinguish()
 	elif anim_name == "exit":
 		queue_free()
 
