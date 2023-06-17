@@ -9,6 +9,8 @@ onready var close_button: TextureButton = $"%CloseButton"
 onready var fullscreen_button: TextureButton = $"%FullscreenButton"
 onready var windowed_button: TextureButton = $"%WindowedButton"
 
+var refreshed = false
+
 func _ready():
 	refresh()
 	EventBus.connect("settings_menu_opened", self, "_on_settings_menu_opened")
@@ -38,7 +40,8 @@ func _on_BgmSlider_value_changed(value: float) -> void:
 
 func _on_SfxSlider_value_changed(value: float) -> void:
 	AudioManager.set_sfx_volume(value)
-	AudioManager.button_hover_sfx.play()
+	if refreshed:
+		AudioManager.button_hover_sfx.play()
 
 func refresh():
 	bgm_slider.value = db2linear(AudioServer.get_bus_volume_db(1)) * 100
@@ -46,6 +49,7 @@ func refresh():
 	bgm_slider.editable = !AudioServer.is_bus_mute(1)
 	sfx_slider.editable = !AudioServer.is_bus_mute(2)
 	set_fullscreen_mode(OS.window_fullscreen)
+	refreshed = true
 
 func set_fullscreen_mode(is_fullscreen: bool):
 	OS.window_fullscreen = is_fullscreen

@@ -1,7 +1,12 @@
 extends TextureButton
 
+var refreshed = false
+
 func _on_StartMenuButton_focus_entered() -> void:
-	AudioManager.button_hover_sfx.play()
+	if refreshed:
+		AudioManager.button_hover_sfx.play()
+	else:
+		refreshed = true
 	scale_button(1.2)
 
 func _on_StartMenuButton_focus_exited() -> void:
