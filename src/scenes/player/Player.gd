@@ -16,6 +16,8 @@ var knockback_friction: float = 500.0
 var acceleration: float = 4000.0
 var friction: float = 2000.0
 var aim_direction: Vector2 = Vector2.RIGHT
+enum STATES { MOVE, WIND_SLASH, SUMMON_CLOUD }
+var state: int = STATES.MOVE
 
 var dead_zone = 0.5
 var xAxisRL = Input.get_joy_axis(0, JOY_AXIS_2)
@@ -30,14 +32,17 @@ func _process(delta: float) -> void:
 	update_aim_direction()
 	if Input.is_action_just_pressed("spawn_cloud"):
 		if StatsManager.consume_cloud_energy():
+			state = STATES.SUMMON_CLOUD
 			AudioManager.cloud_sfx.play_sfx(0.2)
 			var cloud_spawn_offset = Vector2(rand_range(0, 16), rand_range(0, 16))
 			CloudManager.spawn_cloud(global_position + cloud_spawn_offset)
 	if Input.is_action_just_pressed("wind"):
 		if StatsManager.consume_wind_energy():
+			state = STATES.WIND_SLASH
 			AudioManager.wind_sfx.play_sfx(0.2)
 			wind_area.summon_wind(aim_direction)
 			EventBus.emit_signal("wind_summoned", global_position, aim_direction)
+	update_animation()
 
 func enable(enabled: bool):
 	set_process(enabled)
@@ -53,16 +58,24 @@ func update_aim_direction():
 		aim_direction = global_position.direction_to(get_global_mouse_position())
 	var angle = pivot.transform.x.angle_to(aim_direction)
 	pivot.rotate(angle)
-	
+
+func update_animation():
+	match state:
+		STATES.WIND_SLASH:
+			set_animation_direction("windblast_down", "windblast_up", "windblast_left", "windblast_right")
+		_:
+			set_animation_direction("move_down", "move_up", "move_left", "move_right")
+
+func set_animation_direction(down: String, up: String, left: String, right: String):
 	if aim_direction.y > 0.5:
-		animation_player.play("move_down")
+		animation_player.play(down)
 	elif aim_direction.y > -0.5:
 		if aim_direction.x > 0:
-			animation_player.play("move_right")
+			animation_player.play(right)
 		else:
-			animation_player.play("move_left")
+			animation_player.play(left)
 	else:
-		animation_player.play("move_up")
+		animation_player.play(up)
 
 func move_player(delta: float):
 	direction = get_input_vector()
@@ -97,3 +110,7 @@ func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
 
 func _on_StartMenu_play_button_pressed() -> void:
 	pass # Replace with function body.
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name.begins_with("windblast_"):
+		state = STATES.MOVE
