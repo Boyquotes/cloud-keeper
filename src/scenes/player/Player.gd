@@ -5,16 +5,17 @@ onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var wind_area: Area2D = $"%WindArea"
 onready var pivot: Position2D = $"%Pivot"
 onready var player_camera: Camera2D = $"%PlayerCamera"
+onready var sprite_animation_player: AnimationPlayer = $Sprite/SpriteAnimationPlayer
 
 export(float) var speed = 60.0
 
 var direction: Vector2 = Vector2.DOWN
 var velocity: Vector2
 var knockback: Vector2 = Vector2.ZERO
-var knockback_strength: float = 20.0
-var knockback_friction: float = 500.0
-var acceleration: float = 4000.0
-var friction: float = 2000.0
+var knockback_strength: float = 80.0
+var knockback_friction: float = 1000.0
+var acceleration: float = 400.0
+var friction: float = 400.0
 var aim_direction: Vector2 = Vector2.RIGHT
 enum STATES { MOVE, WIND_SLASH, SUMMON_CLOUD }
 var state: int = STATES.MOVE
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 		if StatsManager.consume_cloud_energy():
 			state = STATES.SUMMON_CLOUD
 			AudioManager.cloud_sfx.play_sfx(0.2)
-			var cloud_spawn_offset = Vector2(rand_range(0, 16), rand_range(0, 16))
+			var cloud_spawn_offset = Vector2(rand_range(-8, 8), rand_range(-8, 8))
 			CloudManager.spawn_cloud(global_position + cloud_spawn_offset)
 	if Input.is_action_just_pressed("wind"):
 		if StatsManager.consume_wind_energy():
@@ -79,8 +80,8 @@ func set_animation_direction(down: String, up: String, left: String, right: Stri
 
 func move_player(delta: float):
 	direction = get_input_vector()
-	velocity = get_input_velocity(direction, delta)
-	velocity = move_and_slide(velocity)
+	var target_velocity = get_input_velocity(direction, delta)
+	velocity = move_and_slide(target_velocity)
 
 func get_input_vector() -> Vector2:
 	var input_vector = Vector2.ZERO
@@ -98,6 +99,8 @@ func get_aim_input_vector() -> Vector2:
 	return input_vector
 
 func get_input_velocity(input_vector: Vector2, delta: float) -> Vector2:
+	knockback = knockback.move_toward(Vector2.ZERO, knockback_friction * delta)
+	velocity += knockback
 	if input_vector == Vector2.ZERO:
 		return velocity.move_toward(Vector2.ZERO, friction * delta)
 	else:
@@ -108,9 +111,15 @@ func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
 		AudioManager.item_sfx.play_sfx(0.15)
 		area.pick_up()
 
-func _on_StartMenu_play_button_pressed() -> void:
-	pass # Replace with function body.
-
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name.begins_with("windblast_"):
 		state = STATES.MOVE
+
+func _on_EnemyDetectionArea_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		sprite_animation_player.play("flinch")
+		AudioManager.hurt_sfx.play()
+		var new_knockback = area.global_position.direction_to(global_position) * knockback_strength
+		knockback = (knockback + new_knockback).limit_length(knockback_strength)
+		StatsManager.lose_wind_energy(StatsManager.stats.wind_cost / 2)
+		StatsManager.lose_cloud_energy(StatsManager.stats.cloud_cost / 2)

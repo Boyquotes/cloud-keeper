@@ -16,6 +16,14 @@ func reset() -> void:
 func _on_game_start() -> void:
 	reset()
 
+func lose_wind_energy(amount: float) -> void:
+	stats.wind_energy = clamp(stats.wind_energy - amount, 0, stats.wind_energy_max)
+	EventBus.emit_signal("wind_energy_updated", stats.wind_energy, stats.wind_energy_max)
+
+func lose_cloud_energy(amount: float) -> void:
+	stats.cloud_energy = clamp(stats.cloud_energy - amount, 0, stats.cloud_energy_max)
+	EventBus.emit_signal("cloud_energy_updated", stats.cloud_energy, stats.cloud_energy_max)
+
 func consume_wind_energy() -> bool:
 	if stats.wind_energy < stats.wind_cost:
 		return false

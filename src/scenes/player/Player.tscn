@@ -1,13 +1,50 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player/WindArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/player/player_shadow.png" type="Texture" id=4]
 [ext_resource path="res://scenes/player/PlayerCamera.gd" type="Script" id=5]
+[ext_resource path="res://assets/shaders/white.tres" type="Shader" id=6]
 
 [sub_resource type="CircleShape2D" id=6]
 radius = 5.0
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 6 )
+shader_param/white_progress = 0.0
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "flinch"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -22,6 +59,35 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/white_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "flinch"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/white_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -231,6 +297,9 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=12]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id=17]
+radius = 5.0
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
@@ -242,14 +311,21 @@ self_modulate = Color( 0.262745, 0.203922, 0.333333, 0.588235 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 18 )
 position = Vector2( 0, -8 )
 texture = ExtResource( 2 )
 hframes = 8
 vframes = 12
 frame = 2
 
+[node name="SpriteAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 21 )
+anims/flinch = SubResource( 20 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
+anims/flinch = SubResource( 19 )
 anims/idle_down = SubResource( 7 )
 anims/idle_left = SubResource( 10 )
 anims/idle_right = SubResource( 4 )
@@ -284,5 +360,13 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetectionArea"]
 shape = SubResource( 12 )
 
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource( 17 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="ItemDetectionArea" to="." method="_on_ItemDetectionArea_area_entered"]
+[connection signal="area_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_area_entered"]
