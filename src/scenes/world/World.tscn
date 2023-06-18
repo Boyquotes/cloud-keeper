@@ -196,7 +196,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-length = 2.4
+length = 2.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../WorldCamera:position")
 tracks/0/interp = 2

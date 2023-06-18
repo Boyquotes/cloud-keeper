@@ -6,6 +6,7 @@ onready var left_button: TextureButton = $"%LeftButton"
 onready var right_button: TextureButton = $"%RightButton"
 onready var close_button: TextureButton = $"%CloseButton"
 onready var tutorial_image: TextureRect = $"%TutorialImage"
+onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var page = 0
 var pages = [
@@ -18,8 +19,15 @@ func _ready() -> void:
 	tutorial_image.texture = load(pages[page])
 	disable_buttons()
 
+func _input(event: InputEvent) -> void:
+	if visible:
+		if event.is_action_pressed("move_right"):
+			next_page()
+		elif event.is_action_pressed("move_left"):
+			prev_page()
+
 func _on_tutorial_triggered() -> void:
-	show()
+	animation_player.play("show")
 
 func _on_LeftButton_mouse_entered() -> void:
 	if left_button.disabled:
@@ -55,6 +63,9 @@ func _on_CloseButton_mouse_exited() -> void:
 	close_button.rect_scale = Vector2.ONE
 
 func _on_LeftButton_pressed() -> void:
+	prev_page()
+
+func prev_page():
 	AudioManager.button_select.play()
 	if page > 0:
 		page -= 1
@@ -62,6 +73,9 @@ func _on_LeftButton_pressed() -> void:
 	disable_buttons()
 
 func _on_RightButton_pressed() -> void:
+	next_page()
+
+func next_page():
 	AudioManager.button_select.play()
 	if page < pages.size() - 1:
 		page += 1
