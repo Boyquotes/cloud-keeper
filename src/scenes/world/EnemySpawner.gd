@@ -5,8 +5,8 @@ signal spawn_triggered(position)
 var spawn_wait_times: Dictionary = {
 	0.0: 1.8,
 	30.0: 1.4,
-	60.0: 1.0,
-	90.0: 0.6
+	60.0: 1.2,
+	90.0: 1.0
 }
 
 func _ready() -> void:

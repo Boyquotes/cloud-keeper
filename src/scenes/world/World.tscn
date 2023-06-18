@@ -196,7 +196,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-length = 1.5
+length = 2.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("../WorldCamera:position")
 tracks/0/interp = 2
@@ -204,10 +204,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.8, 1.8 ),
+"transitions": PoolRealArray( 1, 0.812252, 0.170755 ),
 "update": 0,
-"values": [ Vector2( 160, -192 ), Vector2( 160, 48 ) ]
+"values": [ Vector2( 160, -192 ), Vector2( 160, -56 ), Vector2( 160, 48 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("../Ground/Player")
@@ -216,7 +216,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.5 ),
+"times": PoolRealArray( 1.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -371,17 +371,17 @@ position = Vector2( -16, -384 )
 
 [node name="Sprite" type="Sprite" parent="CloudBorder"]
 self_modulate = Color( 0.772549, 0.8, 0.721569, 1 )
-position = Vector2( 176, 216 )
+position = Vector2( 176, 224 )
 texture = SubResource( 13 )
 
 [node name="Sprite4" type="Sprite" parent="CloudBorder"]
 self_modulate = Color( 0.603922, 0.603922, 0.592157, 1 )
-position = Vector2( 248, 152 )
+position = Vector2( 248, 160 )
 texture = SubResource( 15 )
 
 [node name="Sprite3" type="Sprite" parent="CloudBorder"]
 self_modulate = Color( 0.435294, 0.403922, 0.462745, 1 )
-position = Vector2( 144, 144 )
+position = Vector2( 144, 152 )
 texture = SubResource( 14 )
 
 [node name="Sprite2" type="Sprite" parent="CloudBorder"]
@@ -389,7 +389,7 @@ position = Vector2( 160, 256 )
 texture = SubResource( 13 )
 
 [node name="Goddess" parent="CloudBorder" instance=ExtResource( 19 )]
-position = Vector2( 176, 184 )
+position = Vector2( 176, 192 )
 
 [node name="CloudParticles" type="Particles2D" parent="."]
 position = Vector2( 72, -216 )
