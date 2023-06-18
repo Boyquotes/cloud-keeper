@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/shrine/shrine.png" type="Texture" id=1]
 [ext_resource path="res://scenes/shrine/Shrine.gd" type="Script" id=2]
 [ext_resource path="res://assets/shaders/white.tres" type="Shader" id=3]
 [ext_resource path="res://scenes/shrine/shrine_destroyed.png" type="Texture" id=4]
 [ext_resource path="res://scenes/vfx/explosion/Explosion.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/shrine/TargetPosition.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
@@ -249,6 +250,20 @@ position = Vector2( -8, -16 )
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 6 )
 anims/explode = SubResource( 5 )
+
+[node name="TargetPosition" parent="." instance=ExtResource( 6 )]
+position = Vector2( -32, -16 )
+
+[node name="TargetPosition6" parent="." instance=ExtResource( 6 )]
+position = Vector2( -16, -8 )
+
+[node name="TargetPosition7" parent="." instance=ExtResource( 6 )]
+
+[node name="TargetPosition5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 32, -16 )
+
+[node name="TargetPosition9" parent="." instance=ExtResource( 6 )]
+position = Vector2( 16, -8 )
 
 [connection signal="area_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="." method="_on_AnimationPlayer2_animation_finished"]
