@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://ui/hud/progress_bar.png" type="Texture" id=1]
 [ext_resource path="res://scenes/world/Shrine.tscn" type="PackedScene" id=2]
@@ -10,6 +10,62 @@
 
 [sub_resource type="Theme" id=1]
 
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.333333, 0.439216, 0.392157, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "flash"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 0.772549, 0.8, 0.721569, 1 ), Color( 0.333333, 0.439216, 0.392157, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 1 ), Vector2( 1, 1 ) ]
+}
+
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 5 )
 region = Rect2( 32, 0, 16, 16 )
@@ -17,6 +73,62 @@ region = Rect2( 32, 0, 16, 16 )
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ControlLayout/CloudMeter/CenterContainer/CloudBar:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.219608, 0.439216, 0.501961, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ControlLayout/CloudMeter/CenterContainer/CloudBar:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "flash"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ControlLayout/CloudMeter/CenterContainer/CloudBar:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 0.772549, 0.8, 0.721569, 1 ), Color( 0.219608, 0.439216, 0.501961, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ControlLayout/CloudMeter/CenterContainer/CloudBar:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 1 ), Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -79,19 +191,20 @@ mouse_filter = 2
 margin_right = 16.0
 margin_bottom = 172.0
 mouse_filter = 2
+custom_constants/separation = 0
 alignment = 2
 
 [node name="Control" type="Control" parent="ControlLayout/WindMeter"]
-margin_top = 84.0
+margin_top = 92.0
 margin_right = 16.0
-margin_bottom = 84.0
+margin_bottom = 92.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="ControlLayout/WindMeter"]
-margin_top = 88.0
+margin_top = 92.0
 margin_right = 16.0
-margin_bottom = 152.0
+margin_bottom = 156.0
 mouse_filter = 2
 
 [node name="WindBar" type="TextureProgress" parent="ControlLayout/WindMeter/CenterContainer"]
@@ -100,6 +213,7 @@ margin_left = 6.0
 margin_right = 10.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 4, 64 )
+rect_pivot_offset = Vector2( 2, 32 )
 mouse_filter = 2
 theme = SubResource( 1 )
 step = 0.01
@@ -108,6 +222,11 @@ texture_progress = ExtResource( 1 )
 fill_mode = 3
 tint_progress = Color( 0.333333, 0.439216, 0.392157, 1 )
 nine_patch_stretch = true
+
+[node name="WindAnimationPlayer" type="AnimationPlayer" parent="ControlLayout/WindMeter/CenterContainer/WindBar"]
+unique_name_in_owner = true
+anims/RESET = SubResource( 19 )
+anims/flash = SubResource( 18 )
 
 [node name="WindIcon" type="TextureRect" parent="ControlLayout/WindMeter"]
 unique_name_in_owner = true
@@ -135,19 +254,20 @@ margin_left = 20.0
 margin_right = 36.0
 margin_bottom = 172.0
 mouse_filter = 2
+custom_constants/separation = 0
 alignment = 2
 
 [node name="Control" type="Control" parent="ControlLayout/CloudMeter"]
-margin_top = 84.0
+margin_top = 92.0
 margin_right = 16.0
-margin_bottom = 84.0
+margin_bottom = 92.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="ControlLayout/CloudMeter"]
-margin_top = 88.0
+margin_top = 92.0
 margin_right = 16.0
-margin_bottom = 152.0
+margin_bottom = 156.0
 mouse_filter = 2
 
 [node name="CloudBar" type="TextureProgress" parent="ControlLayout/CloudMeter/CenterContainer"]
@@ -156,6 +276,7 @@ margin_left = 6.0
 margin_right = 10.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 4, 64 )
+rect_pivot_offset = Vector2( 2, 32 )
 mouse_filter = 2
 theme = SubResource( 1 )
 step = 0.01
@@ -164,6 +285,12 @@ texture_progress = ExtResource( 1 )
 fill_mode = 3
 tint_progress = Color( 0.219608, 0.439216, 0.501961, 1 )
 nine_patch_stretch = true
+
+[node name="CloudAnimationPlayer" type="AnimationPlayer" parent="ControlLayout/CloudMeter/CenterContainer/CloudBar"]
+unique_name_in_owner = true
+root_node = NodePath("../../../../..")
+anims/RESET = SubResource( 16 )
+anims/flash = SubResource( 17 )
 
 [node name="CloudIcon" type="TextureRect" parent="ControlLayout/CloudMeter"]
 unique_name_in_owner = true

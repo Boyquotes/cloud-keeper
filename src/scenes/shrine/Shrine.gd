@@ -11,7 +11,7 @@ func _on_EnemyDetectionArea_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		area.queue_free()
 		StatsManager.take_damage()
-		AudioManager.hurt_sfx.play_sfx()
+		AudioManager.explosion_sfx.play_sfx()
 		animation_player.play("flinch")
 
 func _on_AnimationPlayer2_animation_finished(anim_name: String) -> void:

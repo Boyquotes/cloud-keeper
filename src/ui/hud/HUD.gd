@@ -12,6 +12,8 @@ onready var cloud_tween: Tween = $"%CloudTween"
 onready var wind_tween: Tween = $"%WindTween"
 onready var shrine: VBoxContainer = $Shrine
 onready var rain_timer: CenterContainer = $"%RainTimer"
+onready var cloud_animation_player: AnimationPlayer = $"%CloudAnimationPlayer"
+onready var wind_animation_player: AnimationPlayer = $"%WindAnimationPlayer"
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
@@ -41,10 +43,14 @@ func set_input_modulate(action: String, input_control: Control):
 
 func _on_cloud_energy_updated(energy, energy_max):
 	cloud_bar.max_value = energy_max
+	if cloud_bar.value > energy:
+		cloud_animation_player.play("flash")
 	cloud_bar.value = energy
 
 func _on_wind_energy_updated(energy, energy_max):
 	wind_bar.max_value = energy_max
+	if wind_bar.value > energy:
+		wind_animation_player.play("flash")
 	wind_bar.value = energy
 
 func _on_game_start():
