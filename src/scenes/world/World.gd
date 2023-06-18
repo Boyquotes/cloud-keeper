@@ -6,10 +6,12 @@ onready var item_spawner: Polygon2D = $"%ItemSpawner"
 onready var player: KinematicBody2D = $"%Player"
 onready var rain_particles: Particles2D = $"%RainParticles"
 onready var splash_particles: Particles2D = $"%SplashParticles"
+onready var shrine: StaticBody2D = $"%Shrine"
 
 export(bool) var tutorial_viewed = false
 
 func _ready() -> void:
+	EventBus.connect("game_over", self, "_on_game_over")
 	EventBus.connect("game_victory", self, "_on_game_victory")
 	EventBus.connect("tutorial_closed", self, "_on_tutorial_closed")
 
@@ -19,6 +21,12 @@ func _on_game_victory() -> void:
 	rain_particles.emitting = true
 	splash_particles.emitting = true
 	extinguish_enemies()
+
+func _on_game_over() -> void:
+	shrine.explode()
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		enemy.disable()
 
 func _on_StartMenu_play_button_pressed() -> void:
 	rain_particles.emitting = false

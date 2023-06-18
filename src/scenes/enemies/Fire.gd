@@ -32,6 +32,10 @@ func extinguish() -> void:
 	AudioManager.extinguish_sfx.play_sfx(0.2)
 	$AnimationPlayer.play("poof")
 
+func disable() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
+	speed = 0.0
+
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "poof":
 		queue_free()

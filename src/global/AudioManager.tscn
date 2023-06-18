@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://global/AudioManager.gd" type="Script" id=1]
 [ext_resource path="res://global/SfxPlayer.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/audio/sfx/button_hover.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/audio/sfx/water.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/audio/sfx/jump.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/sfx/explosion.wav" type="AudioStream" id=12]
 
 [node name="AudioManager" type="Node"]
 pause_mode = 2
@@ -58,3 +59,7 @@ stream = ExtResource( 10 )
 [node name="ButtonSelect" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
 stream = ExtResource( 11 )
+
+[node name="ExplosionSfx" parent="." instance=ExtResource( 2 )]
+unique_name_in_owner = true
+stream = ExtResource( 12 )

@@ -8,6 +8,7 @@ onready var item_sfx: AudioStreamPlayer = $"%ItemSfx"
 onready var button_hover_sfx: AudioStreamPlayer = $"%ButtonHoverSfx"
 onready var water_sfx: AudioStreamPlayer = $"%WaterSfx"
 onready var button_select: AudioStreamPlayer = $"%ButtonSelect"
+onready var explosion_sfx: AudioStreamPlayer = $"%ExplosionSfx"
 
 func mute_bgm(muted = true):
 	AudioServer.set_bus_mute(1, muted)

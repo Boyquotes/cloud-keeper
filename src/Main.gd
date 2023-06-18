@@ -6,10 +6,10 @@ var world
 var world_scene = preload("res://scenes/world/World.tscn")
 
 func _ready() -> void:
-	EventBus.connect("game_over", self, "_on_game_over")
+	EventBus.connect("game_reset", self, "_on_game_reset")
 	world = $World
 
-func _on_game_over() -> void:
+func _on_game_reset() -> void:
 	fade_screen.whiteout(false)
 
 func _on_FadeScreen_whiteout_completed() -> void:
