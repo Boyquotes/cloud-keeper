@@ -42,7 +42,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.576471, 0.631373, 0.403922, 1 ) ]
+"values": [ Color( 0.431373, 0.666667, 0.470588, 1 ) ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -71,7 +71,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.05 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.576471, 0.631373, 0.403922, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.431373, 0.666667, 0.470588, 1 ) ]
 }
 
 [sub_resource type="AtlasTexture" id=6]
@@ -237,7 +237,7 @@ value = 60.0
 texture_under = SubResource( 22 )
 texture_progress = SubResource( 21 )
 fill_mode = 3
-tint_progress = Color( 0.576471, 0.631373, 0.403922, 1 )
+tint_progress = Color( 0.431373, 0.666667, 0.470588, 1 )
 
 [node name="WindAnimationPlayer" type="AnimationPlayer" parent="ControlLayout/WindMeter/CenterContainer/WindBar"]
 unique_name_in_owner = true
