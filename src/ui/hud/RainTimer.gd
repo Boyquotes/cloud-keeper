@@ -3,7 +3,7 @@ extends Control
 onready var texture_progress: TextureProgress = $TextureProgress
 onready var timer: Timer = $Timer
 
-export(float) var wait_time = 120.0
+export(float) var wait_time = 5.0
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")

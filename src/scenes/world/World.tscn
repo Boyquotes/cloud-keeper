@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/world/splash_particle_1.png" type="Texture" id=2]
@@ -210,6 +210,79 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RainParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SplashParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "victory"
+length = 7.0
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("RainParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SplashParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_rain_sfx"
+}, {
+"args": [  ],
+"method": "extinguish_enemies"
+} ]
+}
+
 [node name="World" type="Node2D"]
 script = ExtResource( 17 )
 
@@ -365,7 +438,12 @@ root_node = NodePath("../../StartMenu")
 anims/RESET = SubResource( 5 )
 anims/pan_down = SubResource( 6 )
 
+[node name="VictoryAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 11 )
+anims/victory = SubResource( 12 )
+
 [connection signal="spawn_triggered" from="EnemySpawner" to="Ground/Enemies" method="_on_EnemySpawner_spawn_triggered"]
 [connection signal="item_spawn_triggered" from="ItemSpawner" to="Ground/Items" method="_on_ItemSpawner_item_spawn_triggered"]
 [connection signal="play_button_pressed" from="StartMenu" to="." method="_on_StartMenu_play_button_pressed"]
 [connection signal="animation_finished" from="WorldCamera/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_finished" from="VictoryAnimationPlayer" to="." method="_on_VictoryAnimationPlayer_animation_finished"]

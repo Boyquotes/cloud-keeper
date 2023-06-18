@@ -3,10 +3,10 @@ extends Path2D
 signal spawn_triggered(position)
 
 var spawn_wait_times: Dictionary = {
-	0.0: 1.5,
-	3.0: 1.0,
-	60.0: 0.7,
-	90.0: 0.4
+	0.0: 1.8,
+	30.0: 1.4,
+	60.0: 1.0,
+	90.0: 0.6
 }
 
 func _ready() -> void:

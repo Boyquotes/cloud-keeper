@@ -18,6 +18,7 @@ onready var wind_animation_player: AnimationPlayer = $"%WindAnimationPlayer"
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
 	EventBus.connect("game_over", self, "_on_game_over")
+	EventBus.connect("game_reset", self, "_on_game_reset")
 	EventBus.connect("cloud_energy_updated", self, "_on_cloud_energy_updated")
 	EventBus.connect("wind_energy_updated", self, "_on_wind_energy_updated")
 
@@ -58,6 +59,9 @@ func _on_game_start():
 	show()
 
 func _on_game_over():
+	hide()
+
+func _on_game_reset():
 	hide()
 
 func reset() -> void:
