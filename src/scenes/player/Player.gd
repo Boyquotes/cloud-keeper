@@ -62,6 +62,8 @@ func update_aim_direction():
 
 func update_animation():
 	match state:
+		STATES.SUMMON_CLOUD:
+			animation_player.play("summon")
 		STATES.WIND_SLASH:
 			set_animation_direction("windblast_down", "windblast_up", "windblast_left", "windblast_right")
 		_:
@@ -112,7 +114,7 @@ func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
 		area.pick_up()
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name.begins_with("windblast_"):
+	if anim_name == "summon" || anim_name.begins_with("windblast_"):
 		state = STATES.MOVE
 
 func _on_EnemyDetectionArea_area_entered(area: Area2D) -> void:
