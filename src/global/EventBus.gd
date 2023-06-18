@@ -17,3 +17,5 @@ signal game_reset
 signal settings_menu_opened
 signal tutorial_triggered
 signal tutorial_closed
+
+signal game_timer_tick(value, max_value)

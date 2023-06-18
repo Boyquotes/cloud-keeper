@@ -3,7 +3,7 @@ extends Control
 onready var texture_progress: TextureProgress = $TextureProgress
 onready var timer: Timer = $Timer
 
-export(float) var wait_time = 90.0
+export(float) var wait_time = 120.0
 
 func _ready() -> void:
 	EventBus.connect("game_start", self, "_on_game_start")
@@ -24,6 +24,7 @@ func _on_game_over() -> void:
 	timer.stop()
 
 func _on_TextureProgress_value_changed(value: float) -> void:
-	if texture_progress.value == 100:
+	EventBus.emit_signal("game_timer_tick", value, texture_progress.max_value)
+	if value == texture_progress.max_value:
 		EventBus.emit_signal("game_victory")
 		timer.stop()
