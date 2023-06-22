@@ -110,7 +110,7 @@ func get_input_velocity(input_vector: Vector2, delta: float) -> Vector2:
 
 func _on_ItemDetectionArea_area_entered(area: Area2D) -> void:
 	if area.is_in_group("item"):
-		AudioManager.item_sfx.play_sfx(0.15)
+		AudioManager.item_sfx.play_sfx(0.05)
 		area.pick_up()
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
